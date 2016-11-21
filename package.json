@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/bbojkov/InfectedMushroom/issues"
   },
-  "homepage": "https://github.com/bbojkov/InfectedMushroom#readme"
+  "homepage": "https://github.com/bbojkov/InfectedMushroom#readme",
+  "dependencies": {
+    "express": "4.14.0",
+    "mongoose": "4.6.8"
+  }
 }
