@@ -1,0 +1,21 @@
+Как да стартираме app-a локално.
+1. Стартирайте mongodb
+ 1.1. Open cmd - type "mongod"
+ 1.2. Ако използвате VS Code, дебъгнете апп-а с F5 и не го спирайте
+ /За момента аз така го изпозлвам, nodemon може би прави същото, не съм се разравял/
+ 1.3. Отворете браузъра и напишете "localhost:3000"
+ 
+ ---Как да се свържем с монго (от монголаб) през конзолата
+
+mongo ds159377.mlab.com:59377/infected_mushroom -u admin -p admin
+
+how to add manualy object
+db.COLLECTION.insert({ "foo" : "bar" })
+db.COLLECTION.find().pretty()
+
+All the usual Mongo commands.
+https://docs.mongodb.com/v3.2/reference/mongo-shell/
+
+More updates coming soon.
+
+
