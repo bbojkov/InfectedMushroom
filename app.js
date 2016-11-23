@@ -2,7 +2,7 @@
 
 const express = require("express");
 
-let env = "production"; // process.env.NODE_ENV || "development";
+let env = process.env.NODE_ENV || "development";
 const config = require("./server/config/config")[env];
 
 let app = express();
