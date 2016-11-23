@@ -7,4 +7,6 @@ module.exports = (config, app) => {
     app.set("views", `${config.rootPath}server\\views`);
 
     app.use(express.static(`${config.rootPath}\\public`));
+
+    console.log(config.rootPath);
 };
