@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title Mushroom Portal
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    body
+        nav.navbar.navbar-default
+            div.container-fluid
+                div.navbar-header
+                    button(type="button").navbar-toggle.collapsed
+                    a.navbar-brand(href="/") Mushroom Gaming Portal
+            div.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                    li.active: a(href="/portal") Portal
+                    li: a(href="/news") News
+                    li: a(href="/reviews") Reviews
+                    li: a(href="/guides") Guides
+                    //- li.dropdown: a(href="#").dropdown-toggle(data-toggle="dropdown")(role="button")(aria-haspopup="true")(aria-expanded="false") Dropdown 
+                    //-     ul.dropdown-menu
+                    //-         li: a(href="#") Action
+                    //-         li: a(href="#") Another Action
+                    //-         li: a(href="#") Whatever Action
+                    //-         li(role="separator").divider
+                    //-         li: a(href="#") Separated Action
+                form.navbar-form.navbar-left
+                    div.form-group
+                        input(type="text")(placeholder="Search").form-control
+                        button(type="submit").btn.btn-default Submit
+                ul.nav.navbar-nav.navbar-right
+                    li: a(href="#") Login
+        block main-content
+                    
+                        
+    

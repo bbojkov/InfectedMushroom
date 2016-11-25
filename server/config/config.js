@@ -8,7 +8,7 @@ module.exports = {
     development: {
         rootPath: getRootPath,
         db: process.env.MONGOLAB_URI || localHostConnectionString, //"mongodb://commodore:pass1@ds159377.mlab.com:59377/infected_mushroom",
-        port: Number(process.env.PORT || 3000)
+        port: Number(process.env.PORT || 3001)
     }
     // production: {
     //     rootPath: getRootPath,

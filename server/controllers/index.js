@@ -1,7 +1,13 @@
 "use strict";
 
-let homeController = require("./home-controller");
+let portalController = require("./portal-controller");
+let newsController = require("./news-controller");
+let reviewsController = require("./reviews-controller");
+let guidesController = require("./guides-controller");
 
 module.exports = {
-    home: homeController
+    portal: portalController,
+    news: newsController,
+    reviews: reviewsController,
+    guides: guidesController
 };
