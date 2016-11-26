@@ -10,9 +10,9 @@ let app = express();
 require("./server/config/database")(config);
 require("./server/config/express")(config, app);
 
-const data = require('./server/data')();
+const data = require("./server/data")();
 //console.log("In app:"+ data.news);
-const controllers = require('./server/controllers')(data);
+const controllers = require("./server/controllers")(data);
 
 require("./server/config/routes")(app, controllers);
 
