@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let responseSchema = mongoose.Schema({
     author: {
@@ -17,17 +17,17 @@ let responseSchema = mongoose.Schema({
     },
     relatedArticle: {
         _id: mongoose.Schema.Types.ObjectId,
-        title: String,
+        title: String
     },
     relatedComment: {
         _id: mongoose.Schema.Types.ObjectId,
-        title: String,
-    },
+        title: String
+    }
 
 });
-responseSchema.set('timestamps', true);
+responseSchema.set("timestamps", true);
 
-mongoose.model('Response', responseSchema);
-let responseModel = mongoose.model('Response');
+mongoose.model("Response", responseSchema);
+let responseModel = mongoose.model("Response");
 
 module.exports = responseModel;

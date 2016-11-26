@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let tagSchema = mongoose.Schema({
     name: {
@@ -15,7 +15,7 @@ let tagSchema = mongoose.Schema({
 
 });
 
-mongoose.model('Tag', tagSchema);
-let tagModel = mongoose.model('Tag');
+mongoose.model("Tag", tagSchema);
+let tagModel = mongoose.model("Tag");
 
 module.exports = tagModel;
