@@ -2,3 +2,9 @@ extends ./layout/_layout.pug
 
 block main-content
     h5 Some text from the "NEWS" file that extends the layout
+    a(href="/news/create") Create news
+
+    each news in result
+        .news-container
+            h1= news.title
+            p= news.body

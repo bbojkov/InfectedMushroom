@@ -1,0 +1,20 @@
+extends ./layout/_layout.pug
+
+block main-content
+    h5 Create news form
+        form(method="post" action="/news")
+            label
+                input(type="text" name="title" placeholder="Enter title here")
+                br
+                br
+                select(name="category")
+                    option(value="RPG") RPG
+                    option(value="Race") Race
+                    option(value="Smiulation") Simulation
+                    option(value="Strategy") Strategy
+                br
+                textarea(rows="20" cols="50" name="body" placeholder="Start new text here")
+                br
+                br
+                input(type="text" name="tags" placeholder="Enter tags here, separated with commas")
+                input(type="submit" value="Create")
