@@ -8,7 +8,7 @@ module.exports = function({ app, data }) {
     app.use(passport.session());
 
     const strategy = new LocalStrategy((username, password, done) => {
-        data.findUserByCredentials(username, password)
+        data.auth.findUserByCredentials(username, password)
             .then(user => {
                 if (user) {
                     return done(null, user);
@@ -29,7 +29,7 @@ module.exports = function({ app, data }) {
 
     passport.deserializeUser((id, done) => {
         // use the id serialized in the session to retrieve the use from the database
-        data.findUserById(id)
+        data.auth.findUserById(id)
             .then(user => {
                 if (user) {
                     return done(null, user);
