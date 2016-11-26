@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let newsSchema = mongoose.Schema({
     title: {
@@ -14,13 +14,13 @@ let newsSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 5,
+        minlength: 5
     },
     category: {
         type: String,
         required: true,
         minlength: 2,
-        mexlength: 20
+        maxlength: 20
     },
     author: {
         _id: mongoose.Schema.Types.ObjectId,
@@ -29,7 +29,7 @@ let newsSchema = mongoose.Schema({
             required: true,
             trim: true,
             minlength: 2,
-            mexlength: 30
+            maxlength: 30
         }
     },
     meta: {
@@ -39,12 +39,12 @@ let newsSchema = mongoose.Schema({
     },
     comments: [{}]
 });
-newsSchema.set('collectio', 'News');
-newsSchema.set('timestamps', true);
+newsSchema.set("collectio", "News");
+newsSchema.set("timestamps", true);
 
-mongoose.model('News', newsSchema);
-let newsModel = mongoose.model('News');
+mongoose.model("News", newsSchema);
+let newsModel = mongoose.model("News");
 
 module.exports = newsModel;
 
-//http://mongoosejs.com/docs/plugins.html
+// http://mongoosejs.com/docs/plugins.html

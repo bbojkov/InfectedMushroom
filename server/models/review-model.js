@@ -1,33 +1,33 @@
-'use strict';
+"use strict";
 
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let reviewSchema = mongoose.Schema({
-     title: {
+    title: {
         type: String,
         required: true,
         trim: true,
         minlength: 5,
-        mexlength: 60
+        maxlength: 60
     },
     body: {
         type: String,
         required: true,
         trim: true,
-        minlength: 5,
+        minlength: 5
     },
     category: {
         type: String,
         required: true,
         minlength: 2,
-        mexlength: 20
+        maxlength: 20
     },
     author: {
         type: String,
         required: true,
         trim: true,
         minlength: 2,
-        mexlength: 30
+        maxlength: 30
     },
     meta: {
         likes: Number,
@@ -36,9 +36,9 @@ let reviewSchema = mongoose.Schema({
     },
     comments: [{}]
 });
-reviewSchema.set('timestamps', true);
+reviewSchema.set("timestamps", true);
 
-mongoose.model('Review', reviewSchema);
-let reviewModel = mongoose.model('Review');
+mongoose.model("Review", reviewSchema);
+let reviewModel = mongoose.model("Review");
 
 module.exports = reviewModel;

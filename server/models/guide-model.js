@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let guideSchema = mongoose.Schema({
-     title: {
+    title: {
         type: String,
         required: true,
         trim: true,
@@ -14,20 +14,20 @@ let guideSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 5,
+        minlength: 5
     },
     category: {
         type: String,
         required: true,
         minlength: 2,
-        mexlength: 20
+        maxlength: 20
     },
     author: {
         type: String,
         required: true,
         trim: true,
         minlength: 2,
-        mexlength: 30
+        maxlength: 30
     },
     meta: {
         likes: Number,
@@ -36,9 +36,9 @@ let guideSchema = mongoose.Schema({
     },
     comments: [{}]
 });
-guideSchema.set('timestamps', true); //TODO: try plugin
+guideSchema.set("timestamps", true); //TODO: try plugin
 
-mongoose.model('Guide', guideSchema);
-let guideModel = mongoose.model('Guide');
+mongoose.model("Guide", guideSchema);
+let guideModel = mongoose.model("Guide");
 
 module.exports = guideModel;

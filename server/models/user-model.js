@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 
 let userSchema = mongoose.Schema({
     username: {
@@ -8,7 +8,7 @@ let userSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 2,
-        mexlength: 30,
+        maxlength: 30,
         match: /[A-Za-z0-9_]/
     },
     email: {
@@ -16,21 +16,21 @@ let userSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 2,
-        mexlength: 30,
+        maxlength: 30,
         match: /[A-Za-z0-9_]/
     },
     passHash: {
         type: String,
         required: true,
         minlength: 2,
-        mexlength: 40
+        maxlength: 40
     },
     firstName: {
         type: String,
         required: true,
         trim: true,
         minlength: 2,
-        mexlength: 30,
+        maxlength: 30,
         match: /[A-Za-z0-9_]/
     },
     lastName: {
@@ -38,14 +38,14 @@ let userSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 2,
-        mexlength: 30,
+        maxlength: 30,
         match: /[A-Za-z0-9_]/
     },
     role: {
         type: String,
-        enum: ['admin', 'powerUser', 'user']
+        enum: ["admin", "powerUser", "user"]
     },
-    meta:{
+    meta: {
         subscriptions: [],
         comments: [],
         friends: [],
@@ -53,7 +53,7 @@ let userSchema = mongoose.Schema({
     }
 });
 
-mongoose.model('User', userSchema);
-let userModel = mongoose.model('User');
+mongoose.model("User", userSchema);
+let userModel = mongoose.model("User");
 
 module.exports = userModel;
