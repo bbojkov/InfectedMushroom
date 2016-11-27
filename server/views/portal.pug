@@ -1,4 +1,32 @@
 extends ./layout/_layout.pug
+include mixins.pug
 
 block main-content
-    h5 Some text from the "PORTAL" file that extends the layout
+    .container-fluid
+        .row
+            .col-md-8
+                strong Latest News
+            .col-md-1
+                button.btn.btn-default See More
+        .row
+            +list-articles(params)
+            +list-articles(params)
+            +list-articles(params)          
+        .row
+            .col-md-8
+                strong Latest Reviews
+            .col-md-1
+                button.btn.btn-default See More
+        .row
+            +delete-that-mixin-later
+            +delete-that-mixin-later
+            +delete-that-mixin-later
+        .row
+            .col-md-8
+                strong Latest Guides
+            .col-md-1
+                button.btn.btn-default See More
+        .row
+            +delete-this-too
+            +delete-this-too
+            +delete-this-too
