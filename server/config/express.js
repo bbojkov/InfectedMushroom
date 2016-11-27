@@ -12,5 +12,6 @@ module.exports = (config, app) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    app.use(express.static(`${config.rootPath}/public`));
+    app.use('/static', express.static('public'));
+    //app.use(express.static(`${config.rootPath}/public`));
 };
