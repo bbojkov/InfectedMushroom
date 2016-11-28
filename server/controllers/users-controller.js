@@ -10,7 +10,7 @@ module.exports = function(data) {
                 //encrypt the pass
                 //other user like this ? with the same mail ? with the same username
                 data.users.createUser(user)
-                then(user => {
+                .then(user => {
                     req.logIn(user, (err, user) => {
                         if (err) {
                             console.log('Cant create user!!!');
