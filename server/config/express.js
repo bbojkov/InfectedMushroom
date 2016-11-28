@@ -15,18 +15,18 @@ module.exports = (config, app) => {
     app.use(cookieParser());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressSession(
-        { 
+        {
             secret: 'purple unicorn',
             resave: true,
             saveUninitialized: true
-         }));
+        }));
 
     // passport middleware
     app.use(passport.initialize());
     app.use(passport.session());
 
     app.use((req, res, done) => {
-        if(req.user){
+        if (req.user) {
             res.locals.currentUser = req.user; //this is global to all views
         }
         done();

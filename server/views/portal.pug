@@ -1,32 +1,28 @@
-extends ./layout/_layout.pug
+extends _layout.pug
 include mixins.pug
 
+block styles
+    link(rel="stylesheet" href="/static/css/portal.css")
+
 block main-content
-    .container-fluid
-        .row
-            .col-md-8
-                strong Latest News
-            .col-md-1
-                button.btn.btn-default See More
-        .row
-            +list-articles(params)
-            +list-articles(params)
-            +list-articles(params)          
-        .row
-            .col-md-8
-                strong Latest Reviews
-            .col-md-1
-                button.btn.btn-default See More
-        .row
-            +delete-that-mixin-later
-            +delete-that-mixin-later
-            +delete-that-mixin-later
-        .row
-            .col-md-8
-                strong Latest Guides
-            .col-md-1
-                button.btn.btn-default See More
-        .row
-            +delete-this-too
-            +delete-this-too
-            +delete-this-too
+    .row
+        .col-sm-12
+            h2 Latest news
+    .row.row.extra-bottom-padding
+        +list-articles(params)
+        +list-articles(params)
+        +list-articles(params)
+    .row
+        .col-sm-12
+            h2 Latest reviews
+    .row.row.extra-bottom-padding
+        +delete-that-mixin-later
+        +delete-that-mixin-later
+        +delete-that-mixin-later
+    .row
+        .col-sm-12
+            h2 Latest guides
+    .row.row.extra-bottom-padding
+        +delete-this-too
+        +delete-this-too
+        +delete-this-too

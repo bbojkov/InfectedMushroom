@@ -1,31 +1,3 @@
-#logo  {
-  height: 30px;
-  width: 30px;
-
-}
-
-#banner {
-    margin: 0;
-    padding: 0;
-    height: 400px;
-}
-
-/* Fro the register-login* /
-/* General sizing */
-ul.dropdown-lr {
-  width: 300px;
-}
-
-/* mobile fix */
-@media (max-width: 768px) {
-	.dropdown-lr h3 {
-		color: #eee;
-	}
-	.dropdown-lr label {
-		color: #eee;
-	}
-}
-
 /*Css for portal*/
 .news {
     background: #fff;
@@ -165,4 +137,7 @@ p.more {
 	top: 20px;
 	z-index: 1;
 	padding: 3px 15px;
+}
+.row.extra-bottom-padding{
+   margin-bottom: 20px;
 }
