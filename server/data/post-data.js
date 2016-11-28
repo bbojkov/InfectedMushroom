@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = function(models) {
     let { commentModule, responseModule, tagModule } = models;
@@ -12,8 +12,8 @@ module.exports = function(models) {
                             return reject(err);
                         }
                         return resolve(comment);
-                    })
-                })
+                    });
+                });
             },
             addResponse(options) {
                 return new Promise((resolve, reject) => {
@@ -22,8 +22,8 @@ module.exports = function(models) {
                             return reject(err);
                         }
                         return resolve(response);
-                    })
-                })
+                    });
+                });
             },
             addTag(options) {
                 return new Promise((resolve, reject) => {
@@ -32,9 +32,9 @@ module.exports = function(models) {
                             return reject(err);
                         }
                         return resolve(tag);
-                    })
-                })
+                    });
+                });
             }
         }
-    }
-}
+    };
+};

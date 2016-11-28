@@ -35,8 +35,3 @@ module.exports = (config, app) => {
     app.use('/static', express.static('public'));
     //app.use(express.static(`${config.rootPath}/public`));
 };
-
-
-
-
-

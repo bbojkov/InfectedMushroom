@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 module.exports = function (models) {
     let { userModel } = models;
@@ -12,19 +12,18 @@ module.exports = function (models) {
                             return reject(err);
                         }
                         return resolve(user);
-                    })
-                })
+                    });
+                });
             },
             findById(id) {
                 return new Promise((resolve, reject) => {
                     userModel
-                        .findById(id)
-                        .exec((err, user) => {
+                        .findOne(id, (err, user) => {
                             if (err) {
                                 return reject(err);
                             }
                             return resolve(user);
-                        })
+                        });
                 });
             },
             findByUsername(username) {
@@ -46,8 +45,8 @@ module.exports = function (models) {
                             if (err) {
                                 return reject(err);
                             }
-                            return resolve(user)
-                        })
+                            return resolve(user);
+                        });
                 });
             }
         }

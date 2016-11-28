@@ -60,11 +60,10 @@ html(lang="en")
                                             span.glyphicon.glyphicon-cog
                                             | Settings
                                     li.divider
-                                    li
-                                        form(method="post" action="/logout")
-                                            a(role="button")
-                                                span.glyphicon.glyphicon-off
-                                                | logout
+                                      li
+                                        a#logout-btn(href="#")
+                                            span.glyphicon.glyphicon-cog
+                                            | Logout
                         else
                             //-
                             li.dropdown
