@@ -44,8 +44,9 @@ let userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        require: true,
-        enum: ["admin", "powerUser", "user"]
+        required: true,
+        enum: ["admin", "powerUser", "user"],
+        default: "user"
     },
     meta: {
         subscriptions: [],

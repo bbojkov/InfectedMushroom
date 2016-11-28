@@ -3,7 +3,7 @@ module.exports = function (data) {
         register: (req, res) => {
             let user = req.body;
             if (user.password !== user.confirmPassword) {
-                res.render('../views/portal.pug', { globalError: 'Pass not matching' });
+                res.render("../views/portal.pug", { globalError: "Pass not matching" });
             } else {
                 //encrypt the pass
                 //other user like this ? with the same mail ? with the same username
@@ -11,7 +11,7 @@ module.exports = function (data) {
                     .then(returnUser => {
                         req.logIn(returnUser, (err, loggedUser) => {
                             if (err) {
-                                console.log('Cant create user!!!');
+                                console.log("Cant create user!!!");
                                 return err;
                             }
                             res.redirect("/");
@@ -30,7 +30,7 @@ module.exports = function (data) {
                     if (foundUser.authenticate(usersCredentials.password)) {
                         req.logIn(foundUser, (err, loggedUser) => {
                             if (err) {
-                                console.log('Cant login user!!!');
+                                console.log("Cant login user!!!");
                                 return err;
                             }
                             res.redirect("/");
