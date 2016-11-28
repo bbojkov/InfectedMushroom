@@ -43,7 +43,7 @@ module.exports = function (data) {
                 });
         },
         logout: (req, res) => {
-            res.logout();
+            req.logout();
             res.redirect("/");
         }
     };

@@ -12,7 +12,7 @@ module.exports = (app, controllers) => {
 
     app.post("/register", controllers.users.register);
     app.post("/login", controllers.users.login);
-    app.post("/logout", controllers.users.logout)
+    app.get("/logout", controllers.users.logout);
 
     app.all("*", (req, res) => {
         res.status(404);
