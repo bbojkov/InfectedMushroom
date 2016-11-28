@@ -43,7 +43,8 @@ module.exports = () => {
     let data = {
         news: articleData.news,
         guides: articleData.guides,
-        reviews: articleData.reviews
+        reviews: articleData.reviews,
+        users: userData.users
     };
 
     return data;

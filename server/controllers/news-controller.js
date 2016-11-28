@@ -25,6 +25,9 @@ module.exports = function (data) {
             data.news.createNews(news)
                 .then(() => res.redirect("/news"));
 
+        },
+        test: (req, res) => {
+            res.render("../views/test.pug")
         }
     }
 };
