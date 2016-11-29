@@ -50,18 +50,17 @@ mixin article-generator(article)
                         a(href='/news:id')
                             .date.primary
                             - var date = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][article.createdAt.getMonth()]
-                                span.blog-date date
-                                span.blog-number article.createdAt.getDay()
+                                span.blog-date= date
+                                span.blog-number= article.createdAt.getDay()
                             .row
                                 .col-md-6
                                     .image
-                                        img(src=article.img, alt='')
+                                        img(src=article.imgLink, alt='')
                                 .col-md-6
                                     .blog-details
-                                        h2 Post title 1
-                                        p
-                                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique libero et est iaculis, id placerat nisi luctus.
-                                            | Aenean volutpat risus non fermentum feugiat. Etiam facilisis arcu ante, sed molestie diam mollis vel...
+                                        h2= article.title
+                                        - var subText = article.body.substring(0,100+'...')
+                                        p= subText
         .col-md-2
             p
                 | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus congue posuere finibus. Vivamus sit amet ultrices lacus.

@@ -35,6 +35,7 @@ let newsSchema = mongoose.Schema({
     imgLink: {
         type: String,
         trim: true,
+        
         default : "/static/images/shroom-vibe.png"
     },
     meta: {

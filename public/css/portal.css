@@ -1,15 +1,15 @@
 /*Css for portal*/
+
 .news {
-    background: #fff;
+	background: #fff;
 	position: relative;
 	overflow: hidden;
-	z-index:1;
- 	-webkit-transition: all 0.5s ease;
+	z-index: 1;
+	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;	
-
+	transition: all 0.5s ease;
 	border: 1px solid #eaeaea;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .news .img-figure img {
-	position: relative;	
+	position: relative;
 	overflow: hidden;
 	-webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
@@ -47,7 +47,7 @@
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;	
+	transition: all 0.5s ease;
 }
 
 .news .title h1 {
@@ -55,33 +55,30 @@
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 19px;
-/*	color: #3D6AA2;*/
+	/*	color: #3D6AA2;*/
 	text-align: center;
 }
 
-.news:hover .title  {
+.news:hover .title {
 	margin-top: -90px;
 	background: #fff;
 }
 
-.news  p.description {
+.news p.description {
 	position: relative;
 	font-weight: normal;
 	line-height: 22px;
 	opacity: 0;
-
 	text-align: center;
-
 	padding: 15px 30px 0px 30px;
-
 	-webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;	
+	transition: all 0.5s ease;
 }
 
-.news:hover p.description  {
+.news:hover p.description {
 	opacity: 1;
 }
 
@@ -90,42 +87,38 @@ p.more {
 }
 
 .more a {
-    position: relative;
-    font-size: 13px;
-    margin-top: 30px;
-    display: block;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    display: inline-block;
-    color: #28998b;
+	position: relative;
+	font-size: 13px;
+	margin-top: 30px;
+	display: block;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	display: inline-block;
+	color: #28998b;
 }
 
 .more a:after {
-    content: '';
-    width: 18px;
-    height: 1px;
-
-    position: absolute;
-    left: 55px;
-    top: 9px;
-
-    background: #28998b;
-
-    vertical-align: middle;
-    margin-left: 10px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+	content: '';
+	width: 18px;
+	height: 1px;
+	position: absolute;
+	left: 55px;
+	top: 9px;
+	background: #28998b;
+	vertical-align: middle;
+	margin-left: 10px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
 
-
 .news:hover a:after {
-    width: 30px;
+	width: 30px;
 }
 
 .cat {
@@ -138,6 +131,7 @@ p.more {
 	z-index: 1;
 	padding: 3px 15px;
 }
-.row.extra-bottom-padding{
-   margin-bottom: 20px;
+
+.row.extra-bottom-padding {
+	margin-bottom: 20px;
 }
