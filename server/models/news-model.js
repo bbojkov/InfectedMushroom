@@ -32,6 +32,11 @@ let newsSchema = mongoose.Schema({
             maxlength: 30
         }
     },
+    imgLink: {
+        type: String,
+        trim: true,
+        default : "/static/images/shroom-vibe.png"
+    },
     meta: {
         likes: Number,
         dislikes: Number,
@@ -39,7 +44,7 @@ let newsSchema = mongoose.Schema({
     },
     comments: [{}]
 });
-newsSchema.set("collectio", "News");
+newsSchema.set("collection", "News");
 newsSchema.set("timestamps", true);
 
 mongoose.model("News", newsSchema);
