@@ -8,8 +8,8 @@ module.exports = (app, controllers) => {
     app.get("/guides", controllers.guides.index);
     app.get("/news/create", controllers.news.showForm);
     app.post("/news", controllers.news.create);
-    app.get("/test", controllers.news.test);
 
+    // - User routs
     app.post("/register", controllers.users.register);
     app.post("/login", controllers.users.login);
     app.get("/logout", controllers.users.logout);

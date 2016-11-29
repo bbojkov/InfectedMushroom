@@ -35,8 +35,10 @@ let newsSchema = mongoose.Schema({
     imgLink: {
         type: String,
         trim: true,
-        
-        default : "/static/images/shroom-vibe.png"
+        set : value => {
+            if(value.length === 0) return "/static/images/shroom-vibe.png"
+            return value
+        }
     },
     meta: {
         likes: Number,

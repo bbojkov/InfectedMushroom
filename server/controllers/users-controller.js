@@ -23,33 +23,35 @@ module.exports = function (data) {
             let usersCredentials = req.body;
             data.users.findByUsername(usersCredentials.username)
                 .then(foundUser => {
+                       console.log(foundUser);
                     if (!foundUser) {
                         console.log("Invalid username and pass");
                         return;
                     }
-                        
-                    req.logIn(foundUser,(err) => {
-                        if(err) {
+                 
+                    req.logIn(foundUser, (err) => {
+                        if (err) {
                             console.log("Cant login user!");
                             return err;
                         }
 
                         res.redirect("/");
                     });
+                });
 
-                    // if (foundUser.authenticate(usersCredentials.password)) {
-                    //     req.logIn(foundUser, (err, loggedUser) => {
-                    //         if (err) {
-                    //             console.log("Cant login user!!!");
-                    //             return err;
-                    //         }
-                    //         res.redirect("/");
-                    //     });
-                    // } else {
-                    //     console.log("Treshti qko pls");
-                    //     return new Error("treshti");
-                    // }
-                // });
+            // if (foundUser.authenticate(usersCredentials.password)) {
+            //     req.logIn(foundUser, (err, loggedUser) => {
+            //         if (err) {
+            //             console.log("Cant login user!!!");
+            //             return err;
+            //         }
+            //         res.redirect("/");
+            //     });
+            // } else {
+            //     console.log("Treshti qko pls");
+            //     return new Error("treshti");
+            // }
+            // });
         },
         logout: (req, res) => {
             req.logout();

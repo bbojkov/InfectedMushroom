@@ -5,8 +5,8 @@ module.exports = function (data) {
         load: (req, res) => {
             data.news.loadLatestNews(20, 1) //TODO: page should be taken dynamically, 20 should be in config
                 .then(news => {
-                    console.log(req.user)
-                    console.log(news)                    
+                    //console.log(req.user)
+                    console.log((news[0].body).substring(0,50)+'...');                    
                     res.render("../views/news", { result: news });
                 });
         },
@@ -21,14 +21,13 @@ module.exports = function (data) {
             };
             news.author = author;
             news.tags = news.tags.split(",").map(tag => tag.trim());
-            console.log(news);
+
 
             data.news.createNews(news)
-                .then(() => res.redirect("/news"));
-
+                .then(() => {
+                    //console.log(news);
+                    res.redirect("/news")
+                });
         },
-        test: (req, res) => {
-            res.render("../views/test.pug")
-        }
     };
 };
