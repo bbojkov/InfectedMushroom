@@ -1,3 +1,5 @@
+const hashing = require("../utilities/encryption");
+
 module.exports = function (data) {
     return {
         register: (req, res) => {
@@ -5,8 +7,6 @@ module.exports = function (data) {
             if (user.password !== user.confirmPassword) {
                 res.render("../views/portal.pug", { globalError: "Pass not matching" });
             } else {
-                //encrypt the pass
-                //other user like this ? with the same mail ? with the same username
                 data.users.createUser(user)
                     .then(returnUser => {
                         req.logIn(returnUser, (err, loggedUser) => {
@@ -27,20 +27,29 @@ module.exports = function (data) {
                         console.log("Invalid username and pass");
                         return;
                     }
-                    if (foundUser.authenticate(usersCredentials.password)) {
-                        req.logIn(foundUser, (err, loggedUser) => {
-                            if (err) {
-                                console.log("Cant login user!!!");
-                                return err;
-                            }
-                            res.redirect("/");
-                        });
-                    }
-                    else {
-                        console.log("Treshti qko pls");
-                        return new Error("treshti");
-                    }
-                });
+                        
+                    req.logIn(foundUser,(err) => {
+                        if(err) {
+                            console.log("Cant login user!");
+                            return err;
+                        }
+
+                        res.redirect("/");
+                    });
+
+                    // if (foundUser.authenticate(usersCredentials.password)) {
+                    //     req.logIn(foundUser, (err, loggedUser) => {
+                    //         if (err) {
+                    //             console.log("Cant login user!!!");
+                    //             return err;
+                    //         }
+                    //         res.redirect("/");
+                    //     });
+                    // } else {
+                    //     console.log("Treshti qko pls");
+                    //     return new Error("treshti");
+                    // }
+                // });
         },
         logout: (req, res) => {
             req.logout();

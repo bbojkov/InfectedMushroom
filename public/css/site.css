@@ -166,3 +166,12 @@ p.more {
 	z-index: 1;
 	padding: 3px 15px;
 }
+
+.full {
+    background: url("../images/bojokogybi1.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height:100%;
+}

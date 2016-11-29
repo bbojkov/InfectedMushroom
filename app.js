@@ -12,9 +12,9 @@ require("./server/config/express")(config, app);
 
 
 const data = require("./server/data")();
-require("./server/config/passport"); //NOTE: this depends UserModel to be already created !! Think how to attach it as dependency
-const controllers = require("./server/controllers")(data);
 
+const controllers = require("./server/controllers")(data);
+require("./server/config/passport/index")(app, data.users); //NOTE: this depends UserModel to be already created !! Think how to attach it as dependency
 
 require("./server/config/routes")(app, controllers);
 
