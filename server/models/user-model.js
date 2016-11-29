@@ -1,6 +1,7 @@
 "use strict";
 
 let mongoose = require("mongoose");
+let hashing = require("../utilities/encryption");
 
 let userSchema = mongoose.Schema({
     username: {
@@ -20,12 +21,20 @@ let userSchema = mongoose.Schema({
         maxlength: 30,
         match: /[A-Za-z0-9_]/
     },
-    password: {
+    salt: {
         type: String,
-        required: true,
-        minlength: 2,
-        maxlength: 40
+        required: true
     },
+    hashedPass: {
+        type: String,
+        required: true
+    },
+    // password: {
+    //     type: String,
+    //     required: true,
+    //     minlength: 2,
+    //     maxlength: 40
+    // },
     firstName: {
         type: String,
         required: true,
@@ -58,7 +67,6 @@ let userSchema = mongoose.Schema({
 
 userSchema.statics.seedAdminUser = function () {
     //TODO: check if admin already created!
-
     this.create(
         {
             username: "Admin",
@@ -67,22 +75,22 @@ userSchema.statics.seedAdminUser = function () {
             firstName: "Admin",
             lastName: "Petrov",
             role: "admin"
-        }, (err) => 
-        {
-            if(err)
-            {
+        }, (err) => {
+            if (err) {
                 console.log("Cant create admin!!");
             }
         });
 };
 
-userSchema.methods.authenticate = function(password){
-    if(password === this.password){
-        return true
-    } else {
-        return false
+userSchema.method({
+    authenticate: (password, user) => {
+        let inputHashedPassword = hashing.generateHashedPassword(user.salt, password);
+        if (inputHashedPassword === user.hashedPass) {
+            return true;
+        }
+        return false;
     }
-}
+});
 
 mongoose.model("User", userSchema);
 let userModel = mongoose.model("User");

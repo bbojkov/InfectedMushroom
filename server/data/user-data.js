@@ -1,30 +1,38 @@
 "use strict";
 
+const hashing = require("../utilities/encryption");
+
 module.exports = function (models) {
     let { userModel } = models;
 
     return {
         users: {
-            createUser(options) {
-                return new Promise((resolve, reject) => {
-                    userModel.create(options, (err, user) => {
-                        if (err) {
-                            return reject(err);
-                        }
-                        return resolve(user);
-                    });
-                });
+            createUser(user) {
+                const salt = hashing.generateSalt();
+                const hashedPass = hashing.generateHashedPassword(salt, user.password);
+
+                const newUser = {
+                    username: user.username,
+                    email: user.email,
+                    salt,
+                    hashedPass,
+                    firstName: user.firstName,
+                    lastName: user.lastName
+                };
+
+                return userModel.create(newUser);
             },
             findById(id) {
-                return new Promise((resolve, reject) => {
-                    userModel
-                        .findOne(id, (err, user) => {
-                            if (err) {
-                                return reject(err);
-                            }
-                            return resolve(user);
-                        });
-                });
+                return userModel.findById(id);
+                // return new Promise((resolve, reject) => {
+                //     userModel
+                //         .findOne(id, (err, user) => {
+                //             if (err) {
+                //                 return reject(err);
+                //             }
+                //             return resolve(user);
+                //         });
+                // });
             },
             findByUsername(username) {
                 return new Promise((resolve, reject) => {

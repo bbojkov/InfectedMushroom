@@ -6,8 +6,8 @@ module.exports = (data) => {
     let newsController = require("./news-controller")(data);
     let reviewsController = require("./reviews-controller");
     let guidesController = require("./guides-controller");
-    let usersController = require("./users-controller")(data);
-    
+    let usersController = require("./authentication-controller")(data);
+
 
     return {
         portal: portalController,
@@ -15,5 +15,5 @@ module.exports = (data) => {
         reviews: reviewsController,
         guides: guidesController,
         users: usersController
-    }
+    };
 };

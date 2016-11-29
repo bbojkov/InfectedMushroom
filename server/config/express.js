@@ -1,9 +1,8 @@
 "use strict";
 
 const path = require("path");
-
 const express = require("express");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const passport = require("passport");
@@ -16,7 +15,7 @@ module.exports = (config, app) => {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressSession(
         {
-            secret: 'purple unicorn',
+            secret: "purple unicorn",
             resave: true,
             saveUninitialized: true
         }));
@@ -32,6 +31,6 @@ module.exports = (config, app) => {
         done();
     });
 
-    app.use('/static', express.static('public'));
+    app.use("/static", express.static("./public"));
     //app.use(express.static(`${config.rootPath}/public`));
 };

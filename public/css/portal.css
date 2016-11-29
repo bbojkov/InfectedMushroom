@@ -135,3 +135,12 @@ p.more {
 .row.extra-bottom-padding {
 	margin-bottom: 20px;
 }
+
+.full {
+    background: url("../images/bojokogybi1.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height:100%;
+
