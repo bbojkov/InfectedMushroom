@@ -6,29 +6,29 @@ block styles
 
 block main-content
     .row
-        .col-sm-11
+        .col-sm-10
             h2 Latest news
-        .col-sm-1
-            а.btn.btn-default See More
-    .row.row.extra-bottom-padding
+        .col-sm-2
+            a.btn.btn-default.pull-right(href="/news") See more
+    .row.row-extra-bottom-padding
         +list-articles(params)
         +list-articles(params)
         +list-articles(params)
     .row
-        .col-sm-11
+        .col-sm-10
             h2 Latest reviews
-        .col-sm-1
-            а.btn.btn-default See More
-    .row.row.extra-bottom-padding
+        .col-sm-2
+            a.btn.btn-default.pull-right(href="/reviews") See more
+    .row.row-extra-bottom-padding
         +delete-that-mixin-later
         +delete-that-mixin-later
         +delete-that-mixin-later
     .row
-        .col-sm-11
+        .col-sm-10
             h2 Latest guides
-        .col-sm-1
-            а.btn.btn-default See More
-    .row.row.extra-bottom-padding
+        .col-sm-2
+            a.btn.btn-default.pull-right(href="/guides") See more
+    .row.row-extra-bottom-padding
         +delete-this-too
         +delete-this-too
         +delete-this-too
