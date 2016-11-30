@@ -24,7 +24,7 @@ nav.navbar.navbar-inverse.navbar-static-top
                 if currentUser
                     p.navbar-text
                         | Signed in as 
-                        a.navbar-link(href="#")= currentUser.username
+                        span= currentUser.username
                     li.dropdown
                         a.dropdown-toggle(href="#", data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
                             span.glyphicon.glyphicon-user
@@ -32,7 +32,7 @@ nav.navbar.navbar-inverse.navbar-static-top
                             b.caret
                         ul.dropdown-menu
                             li
-                                a(href="/profile")
+                                a(href="/profile/"+currentUser.username)
                                     span.glyphicon.glyphicon-user
                                     | Profile
                             li

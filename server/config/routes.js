@@ -9,7 +9,7 @@ module.exports = (app, controllers) => {
     app.get("/news", controllers.news.load);
     app.get("/create/:article", function (req, res) {
         var articleType = req.params.article;
-        controllers[articleType].showForm(req, res)
+        controllers[articleType].showForm(req, res);
     });
     app.post("/news", controllers.news.create);
 
@@ -17,6 +17,8 @@ module.exports = (app, controllers) => {
     app.post("/register", controllers.users.register);
     app.post("/login", controllers.users.login);
     app.get("/logout", controllers.users.logout);
+
+    app.get("/profile/:currentUser", controllers.usersProfile.index);
 
     app.all("*", (req, res) => {
         res.status(404);
