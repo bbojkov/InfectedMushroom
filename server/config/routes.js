@@ -16,7 +16,7 @@ module.exports = (app, controllers) => {
 
     app.all("*", (req, res) => {
         res.status(404);
-        res.send("Not found");
+        res.render("../views/page-not-found.pug");
         res.end();
     });
 };

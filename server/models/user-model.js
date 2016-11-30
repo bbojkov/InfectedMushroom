@@ -29,12 +29,6 @@ let userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    // password: {
-    //     type: String,
-    //     required: true,
-    //     minlength: 2,
-    //     maxlength: 40
-    // },
     firstName: {
         type: String,
         required: true,
