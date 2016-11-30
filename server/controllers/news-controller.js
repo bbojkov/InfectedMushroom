@@ -1,4 +1,3 @@
-
 module.exports = function (data) {
     //console.log("in ctrlr "+ data.news.createNews);
     return {

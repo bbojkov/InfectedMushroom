@@ -7,8 +7,8 @@ module.exports = (app, controllers) => {
     app.get("/guides", controllers.guides.index);
     app.get("/news/:id", controllers.news.getNewsById);
     app.get("/news", controllers.news.load);
-    app.get("/create/:article", function (req, res) {
-        var articleType = req.params.article;
+    app.get("/create/:article", (req, res) => {
+        let articleType = req.params.article;
         controllers[articleType].showForm(req, res);
     });
     app.post("/news", controllers.news.create);

@@ -73,11 +73,11 @@ userSchema.statics.seedAdminUser = function () {
             if (err) {
                 console.log("Cant create admin!!");
             }
-        });
+    });
 };
 
 userSchema.method({
-    authenticate: function(password, user){
+    authenticate: (password, user) => {
         let inputHashedPassword = hashing.generateHashedPassword(user.salt, password);
         if (inputHashedPassword === user.hashedPass) {
             return true;

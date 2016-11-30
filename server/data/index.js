@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 module.exports = () => {
     //const models = require('../models')();
@@ -36,9 +36,9 @@ module.exports = () => {
     //         });
     //     });
 
-    let articleData = require('./article-data')(models);
-    let postData = require('./post-data')(models);
-    let userData = require('./user-data')(models);
+    let articleData = require("./article-data")(models);
+    let postData = require("./post-data")(models);
+    let userData = require("./user-data")(models);
 
     let data = {
         news: articleData.news,
