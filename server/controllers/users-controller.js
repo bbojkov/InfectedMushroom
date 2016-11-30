@@ -1,6 +1,8 @@
-const hashing = require("../utilities/encryption");
+"use strict";
 
-module.exports = function (data) {
+const passport = require("passport");
+
+module.exports = (data) => {
     return {
         register: (req, res) => {
             let user = req.body;
@@ -9,51 +11,45 @@ module.exports = function (data) {
             } else {
                 data.users.createUser(user)
                     .then(returnUser => {
-                        req.logIn(returnUser, (err, loggedUser) => {
+                        req.logIn(returnUser, (err) => {
                             if (err) {
                                 console.log("Cant create user!!!");
-                                return err;
+                                console.log(err);
                             }
                             res.redirect("/");
                         });
                     });
             }
         },
-        login: (req, res) => {
-            let usersCredentials = req.body;
-            data.users.findByUsername(usersCredentials.username)
-                .then(foundUser => {
-                       console.log(foundUser);
-                    if (!foundUser) {
-                        console.log("Invalid username and pass");
-                        return;
-                    }
-                 
-                    req.logIn(foundUser, (err) => {
-                        if (err) {
-                            console.log("Cant login user!");
-                            return err;
-                        }
+        login(req, res, next) {
+            const auth = passport.authenticate("local", (error, user) => {
+                if (error) {
+                    return next(error);
+                }
 
-                        res.redirect("/");
+                if (!user) {
+                    res({
+                        success: false,
+                        message: "Invalid name or password"
                     });
-                });
+                }
 
-            // if (foundUser.authenticate(usersCredentials.password)) {
-            //     req.logIn(foundUser, (err, loggedUser) => {
-            //         if (err) {
-            //             console.log("Cant login user!!!");
-            //             return err;
-            //         }
-            //         res.redirect("/");
-            //     });
-            // } else {
-            //     console.log("Treshti qko pls");
-            //     return new Error("treshti");
-            // }
-            // });
+                let userCredentials = req.body;
+
+                data.users.findByUsername(userCredentials.username)
+                    .then(foundUser => {
+                        req.logIn(foundUser, (err) => {
+                            if (err) {
+                                console.log("Cant login");
+                                return err;
+                            }
+                            res.redirect("/");
+                        });
+                    });
+            });
+            auth(req, res, next);
         },
-        logout: (req, res) => {
+        logout(req, res) {
             req.logout();
             res.redirect("/");
         }

@@ -6,7 +6,7 @@ module.exports = function (data) {
             data.news.loadLatestNews(20, 1) //TODO: page should be taken dynamically, 20 should be in config
                 .then(news => {
                     //console.log(req.user)
-                    console.log((news[0].body).substring(0,50)+'...');                    
+                    console.log((news[0].body).substring(0, 50) + "...");
                     res.render("../views/news", { result: news });
                 });
         },
@@ -25,9 +25,9 @@ module.exports = function (data) {
 
             data.news.createNews(news)
                 .then(() => {
-                    //console.log(news);
-                    res.redirect("/news")
+                    // console.log(news);
+                    res.redirect("/news");
                 });
-        },
+        }
     };
 };
