@@ -2,8 +2,6 @@ extends _layout.pug
 include mixins.pug
 block styles
     link(rel="stylesheet" href="/static/css/news.css")
-block js
-    link(rel="stylesheet" href="/static/js/pages.js")
 
 block main-content
     .row
@@ -12,7 +10,7 @@ block main-content
                 +article-generator(article)
         .col-md-2
             if true
-                a#article-create-btn.btn.btn-success.btn-large.btn-block(href='/news/create') Publish something new
+                a#article-create-btn.btn.btn-success.btn-large.btn-block(href='/create/news') Publish something new
                 p
                     | Some bla bla text here. Could be used for some chart/chat/maybe. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus congue posuere finibus. Vivamus sit amet ultrices lacus.
                     | In hac habitasse platea dictumst. Nulla odio purus, sodales sit amet venenatis a, cursus vel arcu. Vestibulum tincidunt,
