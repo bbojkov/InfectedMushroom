@@ -83,7 +83,7 @@ userSchema.statics.seedAdminUser = function () {
 };
 
 userSchema.method({
-    authenticate: (password, user) => {
+    authenticate: function(password, user){
         let inputHashedPassword = hashing.generateHashedPassword(user.salt, password);
         if (inputHashedPassword === user.hashedPass) {
             return true;

@@ -7,6 +7,7 @@ const config = require("./server/config/config")[env];
 
 let app = express();
 
+
 require("./server/config/database")(config);
 require("./server/config/express")(config, app);
 

@@ -2,6 +2,8 @@ extends _layout.pug
 include mixins.pug
 block styles
     link(rel="stylesheet" href="/static/css/news.css")
+block js
+    link(rel="stylesheet" href="/static/js/pages.js")
 
 block main-content
     .row
@@ -9,26 +11,30 @@ block main-content
             each article in result
                 +article-generator(article)
         .col-md-2
-            p
-                | Some bla bla text here. Could be used for some chart/chat/maybe. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus congue posuere finibus. Vivamus sit amet ultrices lacus.
-                | In hac habitasse platea dictumst. Nulla odio purus, sodales sit amet venenatis a, cursus vel arcu. Vestibulum tincidunt,
-                | erat sit amet ornare commodo, ligula magna blandit tortor, at porttitor nulla elit eu lacus. Aliquam odio turpis, cursus
-                | at ornare eget, porttitor eget leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et sapien fermentum,
-                | tempor orci id, hendrerit mauris. Curabitur sagittis euismod porta. Phasellus luctus pulvinar augue ac tristique. Phasellus
-                | quam velit, dictum at scelerisque et, iaculis id lorem. Aliquam urna turpis, porta at luctus non, pretium at nisl. Fusce
-                | posuere, ante ut sodales pharetra, lorem risus accumsan orci, at ultrices nulla magna in tortor. Nunc auctor nisi quis
-                | fermentum suscipit. Etiam pellentesque varius nibh ac finibus. Nunc aliquam dui mollis euismod faucibus. Vestibulum
-                | ultricies in ante vitae facilisis. Nunc condimentum, sapien sed congue porttitor, enim lorem finibus felis, nec cursus
-                | felis justo id justo. Donec turpis leo, mattis id ante quis, faucibus iaculis lacus. Donec ultrices ornare eros, id
-                | cursus mi aliquam convallis. In bibendum, tellus ac ultricies consectetur, nibh tortor rhoncus purus, vel dictum urna
-                | lorem sed sapien. Donec dui lacus, ullamcorper sit amet placerat vitae, venenatis nec ex. Fusce dapibus lacus vulputate
-                | ex eleifend commodo. Pellentesque sit amet eros hendrerit, auctor enim sed, dictum dui. Aliquam id vestibulum lorem,
-                | ut aliquet lacus. Suspendisse quis ligula enim. Sed vel rhoncus lacus. Nulla luctus, risus eget tristique convallis,
-                | turpis neque rhoncus mauris, vulputate fermentum urna eros vitae odio. Vivamus pharetra enim nunc, id consequat diam
-                | ornare ut. Donec ultricies nec augue auctor pulvinar. Nam dapibus in est sit amet interdum. Sed ultricies ante eu lectus
-                | finibus pretium. Sed ac ante vitae turpis tincidunt viverra. Ut euismod mi sed condimentum maximus. Nunc turpis odio,
-                | pulvinar id semper in, viverra cursus enim. Donec sed ante pulvinar, posuere nisl eu, vestibulum dolor. Maecenas in
-                | erat turpis. Fusce sit amet sem congue, semper nulla non, volutpat dui. Nulla et commodo urna. Fusce velit libero, congue
-                | in urna eu, tempor efficitur enim. Vestibulum id erat id quam accumsan rhoncus ut nec risus. Praesent et feugiat purus.
-                | Etiam egestas, augue sit amet pharetra elementum, nisi ante maximus arcu, in convallis metus velit eu mi. Quisque suscipit
-                | libero eu magna finibus malesuada.
+            if true
+                a#article-create-btn.btn.btn-success.btn-large.btn-block(href='/news/create') Publish something new
+                p
+                    | Some bla bla text here. Could be used for some chart/chat/maybe. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus congue posuere finibus. Vivamus sit amet ultrices lacus.
+                    | In hac habitasse platea dictumst. Nulla odio purus, sodales sit amet venenatis a, cursus vel arcu. Vestibulum tincidunt,
+                    | erat sit amet ornare commodo, ligula magna blandit tortor, at porttitor nulla elit eu lacus. Aliquam odio turpis, cursus
+                    | at ornare eget, porttitor eget leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et sapien fermentum,
+                    | tempor orci id, hendrerit mauris. Curabitur sagittis euismod porta. Phasellus luctus pulvinar augue ac tristique. Phasellus
+                    | quam velit, dictum at scelerisque et, iaculis id lorem. Aliquam urna turpis, porta at luctus non, pretium at nisl. Fusce
+                    | posuere, ante ut sodales pharetra, lorem risus accumsan orci, at ultrices nulla magna in tortor. Nunc auctor nisi quis
+                    | fermentum suscipit. Etiam pellentesque varius nibh ac finibus. Nunc aliquam dui mollis euismod faucibus. Vestibulum
+                    | ultricies in ante vitae facilisis. Nunc condimentum, sapien sed congue porttitor, enim lorem finibus felis, nec cursus
+                    | felis justo id justo. Donec turpis leo, mattis id ante quis, faucibus iaculis lacus. Donec ultrices ornare eros, id
+                    | cursus mi aliquam convallis. In bibendum, tellus ac ultricies consectetur, nibh tortor rhoncus purus, vel dictum urna
+            else
+                p
+                    | Some bla bla text here. Could be used for some chart/chat/maybe. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus congue posuere finibus. Vivamus sit amet ultrices lacus.
+                    | In hac habitasse platea dictumst. Nulla odio purus, sodales sit amet venenatis a, cursus vel arcu. Vestibulum tincidunt,
+                    | erat sit amet ornare commodo, ligula magna blandit tortor, at porttitor nulla elit eu lacus. Aliquam odio turpis, cursus
+                    | at ornare eget, porttitor eget leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et sapien fermentum,
+                    | tempor orci id, hendrerit mauris. Curabitur sagittis euismod porta. Phasellus luctus pulvinar augue ac tristique. Phasellus
+                    | quam velit, dictum at scelerisque et, iaculis id lorem. Aliquam urna turpis, porta at luctus non, pretium at nisl. Fusce
+                    | posuere, ante ut sodales pharetra, lorem risus accumsan orci, at ultrices nulla magna in tortor. Nunc auctor nisi quis
+                    | fermentum suscipit. Etiam pellentesque varius nibh ac finibus. Nunc aliquam dui mollis euismod faucibus. Vestibulum
+                    | ultricies in ante vitae facilisis. Nunc condimentum, sapien sed congue porttitor, enim lorem finibus felis, nec cursus
+                    | felis justo id justo. Donec turpis leo, mattis id ante quis, faucibus iaculis lacus. Donec ultrices ornare eros, id
+                    | cursus mi aliquam convallis. In bibendum, tellus ac ultricies consectetur, nibh tortor rhoncus purus, vel dictum urna

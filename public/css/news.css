@@ -8,7 +8,7 @@
 	}
 	
 	.article-big-form .image {
-		height: 250px;
+		height: 200px;
 		overflow: hidden;
 		border-radius: 3px 0 0 3px;
 	}
@@ -63,4 +63,8 @@
 		display: block;
 		font-size: 24px;
 		text-align: center;
+	}
+
+	#article-create-btn{
+		margin-bottom: 10px;
 	}

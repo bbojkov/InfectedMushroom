@@ -1,0 +1,55 @@
+extends _layout.pug
+include mixins.pug
+block styles
+    link(rel="stylesheet" href="/static/css/news.css")
+
+block main-content
+    #blog-item.row.content-item.grey
+        .col-sm-10.blog
+            h2 #{title}
+            ul.blog-detail.list-unstyled.list-inline
+                li
+                    span.glyphicon.glyphicon-calendar
+                    | #{createdAt.getDate()}/#{createdAt.getMonth()}/#{createdAt.getFullYear()}
+                li
+                    span.glyphicon.glyphicon-time
+                    | #{createdAt.getHours()} : #{createdAt.getMinutes()}
+                li
+                    span.glyphicon.glyphicon-user
+                    | #{author.username}
+                li
+                    span.glyphicon.glyphicon-commen
+                    | 124 Comments
+            p
+                img.img-responsive.pull-left(src=imgLink, alt='')
+                | #{body}
+            ul.blog-tags.list-unstyled.list-inline
+                //- each tag in tags
+                //- li
+                //-     a(href='#')
+                //-         i.glyphicon.glyphicon-tag
+                //-         | #{tag}
+        .col-sm-2
+            .sidebar
+                .box.categories
+                    ul.list-unstyled
+                        li
+                            a(href='#')
+                                i.fa.fa-female
+                                | Fashion
+                        li
+                            a(href='#')
+                                i.fa.fa-paint-brush
+                                | Design
+                        li
+                            a(href='#')
+                                i.fa.fa-music
+                                | Music
+                        li
+                            a(href='#')
+                                i.fa.fa-plane
+                                | Travel
+                        li
+                            a(href='#')
+                                i.fa.fa-hashtag
+                                | Uncategorized

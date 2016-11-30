@@ -11,6 +11,7 @@ module.exports = (config, app) => {
     app.set("view engine", "pug");
     app.set("views", path.normalize(`${config.rootPath}server/views`));
 
+
     app.use(cookieParser());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressSession(

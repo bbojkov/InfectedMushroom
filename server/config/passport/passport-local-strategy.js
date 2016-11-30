@@ -18,6 +18,9 @@ module.exports = function (passport) {
             User
                 .findOne({ username })
                 .then(user => {
+                     //let aut =  user.authenticate(password, user);
+                     //console.log(aut);
+                     
                     if (user && user.authenticate(password, user)) {
                         done(null, user);
                     } else {
