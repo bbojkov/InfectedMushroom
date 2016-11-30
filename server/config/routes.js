@@ -6,8 +6,11 @@ module.exports = (app, controllers) => {
     app.get("/reviews", controllers.reviews.index);
     app.get("/guides", controllers.guides.index);
     app.get("/news/:id", controllers.news.getNewsById);
-    app.get("/news/create", controllers.news.showForm);
     app.get("/news", controllers.news.load);
+    app.get("/create/:article", function (req, res) {
+        var articleType = req.params.article;
+        controllers[articleType].showForm(req, res)
+    });
     app.post("/news", controllers.news.create);
 
     // - User routs
