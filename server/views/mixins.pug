@@ -45,7 +45,7 @@ mixin article-generator(article)
     .row
         .col-md-12
             .well.article-big-form
-                a(href='/news:'+article._id)
+                a(href='/news/'+article._id)
                     .date.primary
                         span.article-date= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][article.createdAt.getMonth()]
                         span.article-number= article.createdAt.getDate()

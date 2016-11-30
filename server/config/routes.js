@@ -3,10 +3,11 @@
 module.exports = (app, controllers) => {
     app.get("/", controllers.portal.index);
     app.get("/portal", controllers.portal.index);
-    app.get("/news", controllers.news.load);
     app.get("/reviews", controllers.reviews.index);
     app.get("/guides", controllers.guides.index);
+    app.get("/news/:id", controllers.news.getNewsById);
     app.get("/news/create", controllers.news.showForm);
+    app.get("/news", controllers.news.load);
     app.post("/news", controllers.news.create);
 
     // - User routs
