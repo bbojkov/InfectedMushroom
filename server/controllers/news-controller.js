@@ -23,8 +23,8 @@ module.exports = function (data) {
 
             data.news.createNews(news)
                 .then(() => {
-                    //console.log(news);
-                    res.redirect("/news")
+                    // console.log(news);
+                    res.redirect("/news");
                 });
         },
         getNewsById: (req, res) => {
