@@ -1,15 +1,16 @@
-mixin list-articles(params)
+mixin list-articles(news, type)
     .col-sm-4
         .news
             .img-figure
-                .cat fashion
-                img.img-responsive(src='http://sm.ign.com/t/ign_in/cover/o/ori-and-the-blind-forest/ori-and-the-blind-forest_182d.640.jpg')
+                .cat #{news.category}
+                img.img-responsive(src=news.imgLink)
             .title
-                h1 The start of the web and web design
+                h1 #{news.title}
+            - var shortBody =  news.body.substring(0.20);
             p.description
-                | If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden...
+                | #{shortBody}
             p.more
-                a(href='#') read more
+                a(href=type +"/"+ news._id) read more
                 i.fa.fa-angle-right(aria-hidden='true')
 
 mixin delete-that-mixin-later(params)

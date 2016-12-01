@@ -11,9 +11,8 @@ block main-content
         .col-sm-2
             a.btn.btn-default.pull-right(href="/news") See more
     .row.row-extra-bottom-padding
-        +list-articles(params)
-        +list-articles(params)
-        +list-articles(params)
+        each news in firstThreeNews
+            +list-articles(news, "/news")
     .row
         .col-sm-10
             h2 Latest reviews

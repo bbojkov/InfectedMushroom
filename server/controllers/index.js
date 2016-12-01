@@ -2,7 +2,7 @@
 
 module.exports = (data) => {
 
-    let portalController = require("./portal-controller");
+    let portalController = require("./portal-controller")(data);
     let newsController = require("./news-controller")(data);
     let reviewsController = require("./reviews-controller");
     let guidesController = require("./guides-controller");
