@@ -57,6 +57,7 @@ module.exports = function (data) {
             data.news.createNews(news)
                 .then(() => {
                     res.redirect("/news");
+
                 })
                 .catch(() => {
                     res.redirect("/err");
