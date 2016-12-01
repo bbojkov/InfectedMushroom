@@ -1,0 +1,20 @@
+.row
+    #pagination-box.center-block
+        nav(aria-label='Page navigation')
+            ul.pagination
+                li
+                    a(aria-label='Previous')
+                        span(aria-hidden='true') «
+                li.active
+                    a(href='/news?page=1') 1
+                li
+                    a(href='/news?page=2') 2
+                li
+                    a(href='/news?page=3') 3
+                li
+                    a(href='/news/page/4') 4
+                li
+                    a(href='/news/page/5') 5
+                li
+                    a(aria-label='Next')
+                        span(aria-hidden='true') »

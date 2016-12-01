@@ -15,7 +15,6 @@ body {
     font-size: 25px;
     line-height: 45px;
     text-transform: uppercase;
-    margin: 20px 0;
 }
 
 .content-item h3 {
@@ -45,74 +44,6 @@ body {
     display: block;
 }
 
-
-/* BOXES */
-.box {
-    background-color: #FFFFFF;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-}
-
-.box h3 {
-    margin: 30px 0 5px;
-    font-weight: bold;
-}
-
-.box ul {
-    margin: 0;
-}
-
-.box ul li {
-    font-size: 13px;
-    border-bottom: 1px dashed #DDDDDD;
-    padding: 10px 0;
-    font-weight: 600;
-}
-
-.box ul li:last-child {
-    border-bottom: 0;
-}
-
-.box ul li i {
-    font-size: 18px;
-    margin-right: 20px;
-}
-
-.box.categories ul li i {
-    color: #BBBBBB;
-    position: relative;
-    top: 2px;
-    width: 20px;
-}
-
-.posts ul li a {
-    font-size: 11px;
-    line-height: 23px;
-}
-
-.posts ul li a:hover {
-    color: #333333;
-}
-
-.posts ul li div {
-    font-size: 13px;
-    color: #999999;
-    font-weight: bold;
-    text-align: right;
-    margin-top: 5px;
-}
-
-.box.posts ul li i {
-    color: #333333;
-    font-size: 14px;
-    margin-right: 10px;
-}
-
-.box.tags ul.article-tags li {
-    border: 0;
-}
-/* BOXES */
-
 ul.article-tags li {
     padding: 7px 0;
 }
@@ -130,4 +61,23 @@ div ul.article-tags li i, div .box.tags ul li i {
 
 .article p img {
     max-width: 300px;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.comment-box{
+    margin-bottom: 20px;
+    margin-top: 20px
+}
+
+#text {
+    resize: none;
+    margin-bottom:5px;
 }

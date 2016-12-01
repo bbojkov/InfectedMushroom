@@ -33,10 +33,10 @@ function createArticle(model, options) {
         });
     });
 }
-function updateArticle(model, id) {
+function updateArticle(model, id, options) {
     return new Promise((resolve, reject) => {
         model
-            .findByIdAndUpdate(id, updatedOptions, (err, article) => {
+            .findByIdAndUpdate(id, options, (err, article) => {
                 if (err) {
                     return reject(err);
                 }
@@ -85,13 +85,13 @@ module.exports = function(models) {
             createNews(options) {
                 return createArticle(newsModel, options);
             },
-            updateNews(id) {
-                return updateArticle(newsModel, id);
+            updateNews(id, options) {
+                return updateArticle(newsModel, id, options);
             },
             deleteNews(id) {
                 return deleteArticle(newsModel, id);
             },
-            loadLatestNews(count, page) {
+            loadNewsPage(count, page) {
                 return loadLatestArticles(newsModel, count, page);
             }
         },

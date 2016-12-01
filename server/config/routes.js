@@ -7,17 +7,30 @@ module.exports = (app, controllers) => {
     app.get("/guides", controllers.guides.index);
     app.get("/news/:id", controllers.news.getNewsById);
     app.get("/news", controllers.news.load);
-    app.get("/create/:article", function (req, res) {
+
+    app.get("/edit/:article/:id", function(req, res) {
+        var articleType = req.params.article;
+        controllers[articleType].edit(req, res)
+    });
+    app.get("/create/:article", function(req, res) {
         var articleType = req.params.article;
         controllers[articleType].showForm(req, res)
     });
-    app.post("/news", controllers.news.create);
+    app.post("/create/:article", function(req, res) {
+        let articleType = req.params.article;
+        controllers[articleType].create(req, res)
+    });
+    app.post("/update/:article/:id", function(req, res) {
+        let articleType = req.params.article;
+        controllers[articleType].update(req, res)
+    });
 
     // - User routs
     app.post("/register", controllers.users.register);
     app.post("/login", controllers.users.login);
     app.get("/logout", controllers.users.logout);
 
+    app.get("/err", (req, res) => { res.render("../views/components/page-not-found") })
     app.all("*", (req, res) => {
         res.status(404);
         res.send("Not found");
