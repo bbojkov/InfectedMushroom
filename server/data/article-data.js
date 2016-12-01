@@ -71,7 +71,20 @@ function loadLatestArticles(model, count, page) {
     });
 }
 
-module.exports = function(models) {
+function getTotalCount(model) {
+    return new Promise((resolve, reject) => {
+        model
+            .count()
+            .exec((err, count) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(count);
+            });
+    });
+}
+
+module.exports = function (models) {
     let { newsModel, guideModel, reviewModel } = models;
 
     return {
@@ -93,6 +106,9 @@ module.exports = function(models) {
             },
             loadNewsPage(count, page) {
                 return loadLatestArticles(newsModel, count, page);
+            },
+            getTotalNewsCount() {
+                return getTotalCount(newsModel);
             }
         },
         guides: {

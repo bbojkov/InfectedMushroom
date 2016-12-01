@@ -11,8 +11,7 @@ block main-content
                     small submit form
             .panel.panel-default
                 .panel-body
-                    - var url = '/create/' + result
-                    p= url
+                    - var url = '/create/' + result;
                     form#create-article-form.form-horizontal(action=url, method='post', autocomplete='off')
                         // Text input
                         .form-group

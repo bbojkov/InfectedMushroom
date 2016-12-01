@@ -1,18 +1,34 @@
 module.exports = function (data) {
     return {
         load: (req, res) => {
-            let page = +req.query.page || 1;
-            let path = req.path;
-            data.news.loadNewsPage(7, page)
+            let currentPage = +req.query.page || 1;
+            let pagesCount;
+            data.news.getTotalNewsCount()
+                .then(newsCount => {
+
+                    if (newsCount % 7 === 0) {
+                        pagesCount = newsCount / 7;
+                    } else {
+                        pagesCount = ((newsCount / 7) + 1) | 0;
+                    }
+
+                    return data.news.loadNewsPage(7, currentPage);
+                })
                 .then(news => {
+                 
+                    let path = req.path;
                     let result = {
                         articles: news,
-                        type: path
+                        type: path,
+                        pagesCount: pagesCount
                     }
                     res.render("../views/news", result);
-                }).catch(() => {
+                })
+                .catch(() => {
                     res.redirect("/err");
                 });;
+
+
         },
         edit: (req, res) => {
             let id = req.params.id
@@ -24,7 +40,8 @@ module.exports = function (data) {
                         type: mainPath
                     }
                     res.render("../views/edit-form", result);
-                }).catch(() => {
+                })
+                .catch(() => {
                     res.redirect("/err");
                 });;
         },
@@ -39,8 +56,9 @@ module.exports = function (data) {
 
             data.news.createNews(news)
                 .then(() => {
-                    res.render("/news");
-                }).catch(() => {
+                    res.redirect("/news");
+                })
+                .catch(() => {
                     res.redirect("/err");
                 });
         },
@@ -50,7 +68,8 @@ module.exports = function (data) {
             data.news.updateNews(id, body)
                 .then(() => {
                     res.redirect("/news/" + id);
-                }).catch(() => {
+                })
+                .catch(() => {
                     res.redirect("/err");
                 });;
         },
