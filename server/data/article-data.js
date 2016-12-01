@@ -1,8 +1,10 @@
 "use strict";
-function findAllArticles(model) {
+function findFirstThree(model) {
     return new Promise((resolve, reject) => {
         model
             .find()
+            .sort("-createdAt")
+            .limit(3)
             .exec((err, articles) => {
                 if (err) {
                     return reject(err);
@@ -89,8 +91,8 @@ module.exports = function (models) {
 
     return {
         news: {
-            findAllNews() {
-                return findAllArticles(newsModel);
+            findFirstThreeNews() {
+                return findFirstThree(newsModel);
             },
             findNewsById(id) {
                 return findArticleById(newsModel, id);
@@ -112,8 +114,8 @@ module.exports = function (models) {
             }
         },
         guides: {
-            findAllGuides() {
-                return findAllArticles(guideModel);
+            findFirstThreeGuides() {
+                return findFirstThree(guideModel);
             },
             findGuideById(id) {
                 return findArticleById(guideModel, id);
@@ -129,8 +131,8 @@ module.exports = function (models) {
             }
         },
         reviews: {
-            findAllReviews() {
-                return findAllArticles(reviewModel);
+            findFirstThreeReviews() {
+                return findFirstThree(reviewModel);
             },
             findReviewById(id) {
                 return findArticleById(reviewModel, id);
