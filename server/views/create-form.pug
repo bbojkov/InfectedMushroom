@@ -11,7 +11,8 @@ block main-content
                     small submit form
             .panel.panel-default
                 .panel-body
-                    form#create-article-form.form-horizontal(action='/news', method='post', autocomplete='off')
+                    - var url = '/create/' + result;
+                    form#create-article-form.form-horizontal(action=url, method='post', autocomplete='off')
                         // Text input
                         .form-group
                             label.col-sm-4.control-label(for='title')

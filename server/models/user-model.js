@@ -54,8 +54,7 @@ let userSchema = mongoose.Schema({
     meta: {
         subscriptions: [],
         comments: [],
-        friends: [],
-        tags: []
+        friends: []
     }
 });
 

@@ -6,34 +6,39 @@ block styles
 block main-content
     #article-item.row.content-item
         .col-sm-10.article
-            h2 #{title}
+            h2 #{article.title}
             ul.article-detail.list-unstyled.list-inline
                 li
                     span.glyphicon.glyphicon-calendar
-                    | #{createdAt.getDate()}/#{createdAt.getMonth()}/#{createdAt.getFullYear()}
+                    | #{article.createdAt.getDate()}/#{article.createdAt.getMonth()}/#{article.createdAt.getFullYear()}
                 li
                     span.glyphicon.glyphicon-time
-                    | #{createdAt.getHours()} : #{createdAt.getMinutes()}
+                    | #{article.createdAt.getHours()} : #{article.createdAt.getMinutes()}
                 li
-                    span.glyphicon.glyphicon-user
-                    | #{author.username}
+                    a(href="user/"+article.author._id)
+                        span.glyphicon.glyphicon-user
+                        | #{article.author.username}
                 li
                     span.glyphicon.glyphicon-commen
                     | 124 Comments
             p
-                img.img-responsive.pull-left(src=imgLink, alt='')
-                | #{body}
+                img.img-responsive.pull-left(src=article.imgLink, alt='')
+                | #{article.body}
             ul.article-tags.list-unstyled.list-inline
                 //- each tag in tags
                 //- li
                 //-     a(href='#')
                 //-         i.glyphicon.glyphicon-tag
                 //-         | #{tag}
-        .col-sm-2
-            .sidebar
-                .box.categories
-                    ul.list-unstyled
-                        li
-                            a.btn.btn-default.btn-block(href='#' role="button") Edit
-                            a.btn.btn-default.btn-block(href='#') Subscribe
-                            
+        #control-buttons.col-sm-1
+            button.btn.btn-info.btn-circle.btn-xl(type='button')
+                i.glyphicon.glyphicon-thumbs-up
+            button.btn.btn-warning.btn-circle.btn-xl(type='button')
+                i.glyphicon.glyphicon-thumbs-down
+            button.btn.btn-danger.btn-circle.btn-xl(type='button')
+                i.glyphicon.glyphicon-heart
+            a(href="/edit"+type+"/"+article._id)
+                button.btn.btn-green.btn-circle.btn-xl(type='button')
+                    i.glyphicon.glyphicon-edit
+    include components/comment-box
+    include components/comments-list

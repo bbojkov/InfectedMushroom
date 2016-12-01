@@ -1,8 +1,10 @@
 "use strict";
-function findAllArticles(model) {
+function findFirstThree(model) {
     return new Promise((resolve, reject) => {
         model
             .find()
+            .sort("-createdAt")
+            .limit(3)
             .exec((err, articles) => {
                 if (err) {
                     return reject(err);
@@ -33,10 +35,10 @@ function createArticle(model, options) {
         });
     });
 }
-function updateArticle(model, id) {
+function updateArticle(model, id, options) {
     return new Promise((resolve, reject) => {
         model
-            .findByIdAndUpdate(id, updatedOptions, (err, article) => {
+            .findByIdAndUpdate(id, options, (err, article) => {
                 if (err) {
                     return reject(err);
                 }
@@ -71,13 +73,26 @@ function loadLatestArticles(model, count, page) {
     });
 }
 
-module.exports = function(models) {
+function getTotalCount(model) {
+    return new Promise((resolve, reject) => {
+        model
+            .count()
+            .exec((err, count) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(count);
+            });
+    });
+}
+
+module.exports = function (models) {
     let { newsModel, guideModel, reviewModel } = models;
 
     return {
         news: {
-            findAllNews() {
-                return findAllArticles(newsModel);
+            findFirstThreeNews() {
+                return findFirstThree(newsModel);
             },
             findNewsById(id) {
                 return findArticleById(newsModel, id);
@@ -85,19 +100,22 @@ module.exports = function(models) {
             createNews(options) {
                 return createArticle(newsModel, options);
             },
-            updateNews(id) {
-                return updateArticle(newsModel, id);
+            updateNews(id, options) {
+                return updateArticle(newsModel, id, options);
             },
             deleteNews(id) {
                 return deleteArticle(newsModel, id);
             },
-            loadLatestNews(count, page) {
+            loadNewsPage(count, page) {
                 return loadLatestArticles(newsModel, count, page);
+            },
+            getTotalNewsCount() {
+                return getTotalCount(newsModel);
             }
         },
         guides: {
-            findAllGuides() {
-                return findAllArticles(guideModel);
+            findFirstThreeGuides() {
+                return findFirstThree(guideModel);
             },
             findGuideById(id) {
                 return findArticleById(guideModel, id);
@@ -113,8 +131,8 @@ module.exports = function(models) {
             }
         },
         reviews: {
-            findAllReviews() {
-                return findAllArticles(reviewModel);
+            findFirstThreeReviews() {
+                return findFirstThree(reviewModel);
             },
             findReviewById(id) {
                 return findArticleById(reviewModel, id);

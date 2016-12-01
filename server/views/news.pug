@@ -6,8 +6,9 @@ block styles
 block main-content
     .row
         .col-md-10
-            each article in result
-                +article-generator(article)
+            each article in articles
+                +article-generator(article, type)
+            +paging-generator(pagesCount)
         .col-md-2
             if true
                 a#article-create-btn.btn.btn-success.btn-large.btn-block(href='/create/news') Publish something new

@@ -1,15 +1,16 @@
-mixin list-articles(params)
+mixin list-articles(news, type)
     .col-sm-4
         .news
             .img-figure
-                .cat fashion
-                img.img-responsive(src='http://sm.ign.com/t/ign_in/cover/o/ori-and-the-blind-forest/ori-and-the-blind-forest_182d.640.jpg')
+                .cat #{news.category}
+                img.img-responsive(src=news.imgLink)
             .title
-                h1 The start of the web and web design
+                h1 #{news.title}
+            - var shortBody =  news.body.substring(0.20);
             p.description
-                | If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden...
+                | #{shortBody}
             p.more
-                a(href='#') read more
+                a(href=type +"/"+ news._id) read more
                 i.fa.fa-angle-right(aria-hidden='true')
 
 mixin delete-that-mixin-later(params)
@@ -41,11 +42,11 @@ mixin delete-this-too(params)
                 i.fa.fa-angle-right(aria-hidden='true')
 
 
-mixin article-generator(article)
+mixin article-generator(article, type)
     .row
         .col-md-12
             .well.article-big-form
-                a(href='/news/'+article._id)
+                a(href= type + '/'+ article._id)
                     .date.primary
                         span.article-date= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][article.createdAt.getMonth()]
                         span.article-number= article.createdAt.getDate()
@@ -58,3 +59,23 @@ mixin article-generator(article)
                                 h2= article.title
                                 - var subText = (article.body).substring(0,150)+'...'
                                 p= subText
+
+
+mixin paging-generator(pagesCount)
+    .row
+        #pagination-box.center-block
+            nav(aria-label='Page navigation')
+                ul.pagination
+                    li
+                        a(aria-label='Previous')
+                            span(aria-hidden='true') «
+                    li.active
+                        a(href='/news?page=1') 1
+                    if pagesCount > 1
+                    - var n = 2;
+                    while n <= pagesCount
+                        li
+                            a(href='/news?page='+ n)= n++
+                    li
+                        a(aria-label='Next')
+                            span(aria-hidden='true') »
