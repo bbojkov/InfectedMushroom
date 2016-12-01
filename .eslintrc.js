@@ -203,7 +203,6 @@ module.exports = {
                 "allowMultiplePropertiesPerLine": true
             }
         ],
-        "object-shorthand": "error",
         "one-var": "off",
         "one-var-declaration-per-line": "error",
         "operator-assignment": [

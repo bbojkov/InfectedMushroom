@@ -15,7 +15,7 @@ module.exports = (data) => {
             } else {
                 data.users.createUser(user, (createError, createdUser) => {
                     if (createError) {
-                        req.session.error = `Username ${user.username} already exists. Please try again!`;
+                        req.session.error = `Failed to create new user, please try again! Error: ${createError}`;
                         res.redirect("/");
                         return;
                     }
