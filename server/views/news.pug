@@ -8,7 +8,7 @@ block main-content
         .col-md-10
             each article in articles
                 +article-generator(article, type)
-            include components/pageing
+            +paging-generator(pagesCount)
         .col-md-2
             if true
                 a#article-create-btn.btn.btn-success.btn-large.btn-block(href='/create/news') Publish something new

@@ -58,3 +58,23 @@ mixin article-generator(article, type)
                                 h2= article.title
                                 - var subText = (article.body).substring(0,150)+'...'
                                 p= subText
+
+
+mixin paging-generator(pagesCount)
+    .row
+        #pagination-box.center-block
+            nav(aria-label='Page navigation')
+                ul.pagination
+                    li
+                        a(aria-label='Previous')
+                            span(aria-hidden='true') «
+                    li.active
+                        a(href='/news?page=1') 1
+                    if pagesCount > 1
+                    - var n = 2;
+                    while n <= pagesCount
+                        li
+                            a(href='/news?page='+ n)= n++
+                    li
+                        a(aria-label='Next')
+                            span(aria-hidden='true') »
