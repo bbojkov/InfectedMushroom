@@ -26,3 +26,10 @@ set is for strings
 inc for numeric values
 
 
+-->MongoShell<--
+db.COLLECTION.createIndex({some_property:"text"})
+db.COLLECTION.find({$text: {$search: "SOME_TEXT"}})
+
+Find all object with the given "SOME_TEXT"
+
+
