@@ -16,6 +16,10 @@ module.exports = (app, controllers) => {
         var articleType = req.params.article;
         controllers[articleType].showForm(req, res)
     });
+    app.get("/create/:article", (req, res) => {
+        let articleType = req.params.article;
+        controllers[articleType].showForm(req, res);
+    });
     app.post("/create/:article", function(req, res) {
         let articleType = req.params.article;
         controllers[articleType].create(req, res)
@@ -29,11 +33,14 @@ module.exports = (app, controllers) => {
     app.post("/register", controllers.users.register);
     app.post("/login", controllers.users.login);
     app.get("/logout", controllers.users.logout);
+    app.get("/profile/:currentUser", controllers.usersProfile.index);
+
 
     app.get("/err", (req, res) => { res.render("../views/components/page-not-found") })
+
     app.all("*", (req, res) => {
         res.status(404);
-        res.send("Not found");
+        res.render("../views/page-not-found.pug");
         res.end();
     });
 };

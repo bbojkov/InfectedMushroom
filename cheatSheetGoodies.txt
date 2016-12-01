@@ -21,4 +21,8 @@ https://docs.mongodb.com/v3.2/reference/mongo-shell/
 
 More updates coming soon.
 
+db.users.findOneAndUpdate( {"username":"THEUSERNAME"}, {$set: {"role":"TheRoleYouWant}} )
+set is for strings
+inc for numeric values
+
 

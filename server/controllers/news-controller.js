@@ -1,4 +1,3 @@
-
 module.exports = function (data) {
     return {
         load: (req, res) => {

@@ -1,5 +1,3 @@
-/* globals module require Promise */
-
 module.exports = function(models) {
     let { User } = models;
 
