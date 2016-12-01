@@ -37,14 +37,12 @@ module.exports = function (data) {
             news.author = author;
             news.tags = news.tags.split(",").map(tag => tag.trim());
 
-
             data.news.createNews(news)
                 .then(() => {
-                    // console.log(news);
-                    res.redirect("/news");
+                    res.render("/news");
                 }).catch(() => {
                     res.redirect("/err");
-                });;
+                });
         },
         update: (req, res) => {
             let id = req.params.id;
@@ -74,7 +72,7 @@ module.exports = function (data) {
         },
         showForm: (req, res) => {
             let articleType = req.params.article;
-            if (articleType === "news") {
+            if (articleType !== "news") {
                 res.redirect("/err");
             }
             res.render("../views/create-form", { result: articleType });

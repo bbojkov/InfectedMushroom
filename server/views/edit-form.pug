@@ -11,7 +11,6 @@ block main-content
             .panel.panel-default
                 .panel-body
                     - var url = '/update'+type+'/'+article._id;
-                    p= url
                     form#create-article-form.form-horizontal(action=url, method='post', autocomplete='off')
                         // Text input
                         .form-group
