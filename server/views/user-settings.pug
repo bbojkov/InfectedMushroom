@@ -1,0 +1,5 @@
+extends _layout.pug
+
+block main-content
+    if(currentUser)
+        h1 The profile of #{currentUser.username}:

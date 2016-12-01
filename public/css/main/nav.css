@@ -15,7 +15,7 @@
 	height: 29px;
 	margin: 0px 25px;
 	padding: 0 0 0 29px;
-	position: fixed;
+	position: absolute;
 	-webkit-transition: width 400ms ease, background 400ms ease;
     -webkit-text-fill-color: lightgray;
 	transition:         width 400ms ease, background 400ms ease;
