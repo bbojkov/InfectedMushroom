@@ -1,3 +1,5 @@
+block styles
+link(href="/static/css/main/nav.css", rel="stylesheet")
 nav.navbar.navbar-inverse.navbar-static-top
         .navbar-header
             button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1", aria-expanded="false")
@@ -18,8 +20,10 @@ nav.navbar.navbar-inverse.navbar-static-top
                 li
                     a(href="/guides") Guides
                 li
-                    form.navbar-form
-                        input.form-control(placeholder="Search", type="text")
+                    form.search-form(role="search", method="get" action="")
+                        label
+                            input.search-field(type="search", title="Search efter:", value="", name="", placeholder="Search")
+                            input.search-submit(type="submit" value="Search")
             ul.nav.navbar-nav.navbar-right
                 if currentUser
                     p.navbar-text

@@ -1,0 +1,40 @@
+.search-form {
+	position: absolute;
+	right: 20px;
+	top: 1px;
+}
+
+.search-field {
+	background-color: transparent;
+	background-image: url(http://api.ning.com:80/files/dr2jDpSXWFhyuoGJ4YR5Fu-PwuqLz70YxRaUcpdKNxf2HI5ECzddyx3NHuPz-MB4ujGS4rEtdtS-aQoFlQrtv*XwVOu*AvC8/searchicon.png);
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	border: none;
+	cursor: pointer;
+	height: 29px;
+	margin: 0px 25px;
+	padding: 0 0 0 29px;
+	position: fixed;
+	-webkit-transition: width 400ms ease, background 400ms ease;
+    -webkit-text-fill-color: lightgray;
+	transition:         width 400ms ease, background 400ms ease;
+	width: 0;
+}
+
+.search-field:focus {
+	background-color: grey;
+	border: 2px solid darkgray;
+    color: lightgrey;
+	cursor: text;
+	outline: 0;
+	width: 230px;
+}
+
+.search-submit {
+  display: none;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
