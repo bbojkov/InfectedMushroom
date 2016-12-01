@@ -9,7 +9,7 @@ const constants = require("./constants");
 module.exports = {
     development: {
         rootPath: getRootPath,
-        db: process.env.NODE_ENV || constants.connectionString.development, 
+        db: process.env.NODE_ENV || constants.connectionString.development,
         port: Number(process.env.PORT || 3001)
     },
     production: {

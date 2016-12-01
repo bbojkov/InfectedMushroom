@@ -7,7 +7,7 @@ module.exports = function (models) {
 
     return {
         users: {
-            createUser(user) {
+            createUser(user, callback) {
                 const salt = hashing.generateSalt();
                 const hashedPass = hashing.generateHashedPassword(salt, user.password);
 
@@ -20,7 +20,7 @@ module.exports = function (models) {
                     lastName: user.lastName
                 };
 
-                return userModel.create(newUser);
+                return userModel.create(newUser, callback);
             },
             findById(id) {
                 return userModel.findById(id);

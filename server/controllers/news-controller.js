@@ -27,7 +27,7 @@ module.exports = function (data) {
                 });
         },
         getNewsById: (req, res) => {
-            let id = req.params.id
+            let id = req.params.id;
             console.log(id);
             data.news.findNewsById(id)
                 .then(loadedNews => {
