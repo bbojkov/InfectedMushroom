@@ -87,8 +87,12 @@ let userSchema = mongoose.Schema({
             message: "Invalid user role!"
         }
     },
+    articles: {
+        type: String,
+        minlength: 5,
+        default: "No Articles by the moment"
+    },
     meta: {
-        articles: [],
         subscriptions: [],
         comments: [],
         friends: []
@@ -110,10 +114,10 @@ userSchema.statics.seedAdminUser = function () {
             salt: adminSalt,
             hashedPass: adminHashedPass
         }, (err) => {
-        if (err) {
-            console.log("Cant create admin!!");
-        }
-    });
+            if (err) {
+                console.log("Cant create admin!!");
+            }
+        });
 };
 
 userSchema.method({

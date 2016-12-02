@@ -2,13 +2,11 @@ module.exports = (data) => {
     return {
         profile: (req, res) => {
             let username = req.params.currentUser;
-
-            console.log(data.users.findByUsername(username));
+            let options = [];
 
             data.users.findByUsername(username)
                 .then(loadedUsername => {
-                    console.log(loadedUsername);
-                    let options = {
+                    options = {
                         loadedUsername
                     };
                     res.render("../views/user-profile.pug", options);

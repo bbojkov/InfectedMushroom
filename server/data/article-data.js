@@ -92,8 +92,8 @@ function search(model, { pattern, count, page }) {
     let query = {};
     if (typeof pattern === "string" && pattern.length >= MIN_PATTERN_LENGTH) {
         query.$or = [{ title: new RegExp(`.*${pattern}.*`, "gi") },
-                    { body: new RegExp(`.*${pattern}.*`, "gi") },
-                    { category: new RegExp(`.*${pattern}.*`, "gi") }];
+        { body: new RegExp(`.*${pattern}.*`, "gi") },
+        { category: new RegExp(`.*${pattern}.*`, "gi") }];
     }
 
     let skip = (page - 1) * count,
@@ -101,16 +101,16 @@ function search(model, { pattern, count, page }) {
 
     return new Promise((resolve, reject) => {
         model.find()
-                    .where(query)
-                    .skip(skip)
-                    .limit(limit)
-                    .exec((err, articles) => {
-                        if (err) {
-                            return reject(err);
-                        }
+            .where(query)
+            .skip(skip)
+            .limit(limit)
+            .exec((err, articles) => {
+                if (err) {
+                    return reject(err);
+                }
 
-                        return resolve(articles || []);
-                    });
+                return resolve(articles || []);
+            });
     });
 }
 

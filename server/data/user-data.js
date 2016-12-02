@@ -46,7 +46,7 @@ module.exports = function (models) {
                         });
                 });
             },
-            updateUser(id) {
+            updateUser(id, updatedOptions) {
                 return new Promise((resolve, reject) => {
                     userModel
                         .findByIdAndUpdate(id, updatedOptions, (err, user) => {
