@@ -19,7 +19,8 @@ module.exports = (data, validator) => {
         reviews: reviewsController,
         guides: guidesController,
         users: usersController,
-........categories: categoriesController,
+        categories: categoriesController,
+        usersProfile: userProfileController,
         search: searchController
     };
 };
