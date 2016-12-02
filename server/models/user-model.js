@@ -2,6 +2,10 @@
 
 let mongoose = require("mongoose");
 let hashing = require("../utilities/encryption");
+let forbiddenCharacters = ["<", ">", "(", ")"];
+let userRoles = ["user", "powerUser", "admin"];
+
+
 
 let userSchema = mongoose.Schema({
     username: {
@@ -11,7 +15,12 @@ let userSchema = mongoose.Schema({
         trim: true,
         minlength: 2,
         maxlength: 30,
-        match: /[A-Za-z0-9_]/
+        validate: {
+            validator: function (val) {
+                return val.match("^[a-zA-Z0-9_.]*$");
+            },
+            message: "Username should only contain alphanumeric characters!"
+        }
     },
     email: {
         type: String,
@@ -35,7 +44,17 @@ let userSchema = mongoose.Schema({
         trim: true,
         minlength: 2,
         maxlength: 30,
-        match: /[A-Za-z0-9_]/
+        validate: {
+            validator: function (val) {
+                let containsForbiddenChars = forbiddenCharacters.some(
+                (item) => {
+                    return val.includes(item);
+                }
+                    );
+                return !containsForbiddenChars;
+            },
+            message: "First name should not contain invalid characters!"
+        }
     },
     lastName: {
         type: String,
@@ -43,13 +62,30 @@ let userSchema = mongoose.Schema({
         trim: true,
         minlength: 2,
         maxlength: 30,
-        match: /[A-Za-z0-9_]/
+        validate: {
+            validator: function (val) {
+                let containsForbiddenChars = forbiddenCharacters.some(
+                (item) => {
+                    return val.includes(item);
+                }
+                    );
+                return !containsForbiddenChars;
+            },
+            message: "Last name should not contain invalid characters!"
+        }
     },
     role: {
         type: String,
+        default: "user",
         required: true,
-        enum: ["admin", "powerUser", "user"],
-        default: "user"
+        validate: {
+            validator: function (val) {
+                return userRoles.some((item) => {
+                    return item === val;
+                });
+            },
+            message: "Invalid user role!"
+        }
     },
     meta: {
         subscriptions: [],
@@ -69,9 +105,9 @@ userSchema.statics.seedAdminUser = function () {
             lastName: "Petrov",
             role: "admin"
         }, (err) => {
-            if (err) {
-                console.log("Cant create admin!!");
-            }
+        if (err) {
+            console.log("Cant create admin!!");
+        }
     });
 };
 

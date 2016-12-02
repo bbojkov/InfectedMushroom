@@ -25,13 +25,38 @@ module.exports = (config, app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use((req, res, done) => {
+    app.use((req, res, next) => {
         if (req.user) {
-            res.locals.currentUser = req.user; //this is global to all views
+            app.locals.currentUser = req.user;
+        } else {
+            app.locals.currentUser = undefined;
         }
-        done();
+        next();
     });
 
     app.use("/static", express.static("./public"));
-    //app.use(express.static(`${config.rootPath}/public`));
+    // app.use(express.static(`${config.rootPath}/public`));
+
+    app.use((req, res, next) => {
+        if (req.session.error) {
+            let msg = req.session.error;
+            req.session.error = undefined;
+            app.locals.errorMessage = msg;
+        } else {
+            app.locals.errorMessage = undefined;
+        }
+
+        next();
+    });
+    app.use((req, res, next) => {
+        if (req.session.info) {
+            let msg = req.session.info;
+            req.session.info = undefined;
+            app.locals.infoMessage = msg;
+        } else {
+            app.locals.infoMessage = undefined;
+        }
+
+        next();
+    });
 };

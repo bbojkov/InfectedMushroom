@@ -7,18 +7,29 @@ module.exports = (data) => {
         register: (req, res) => {
             let user = req.body;
             if (user.password !== user.confirmPassword) {
-                res.render("../views/portal.pug", { globalError: "Pass not matching" });
+                req.session.error = "Passwords do not match! Please try again!";
+                res.redirect("/");
+            } else if (user.password.length < 6) {
+                req.session.error = "Password should be at least 6 characters long! Please try again!";
+                res.redirect("/");
             } else {
-                data.users.createUser(user)
-                    .then(returnUser => {
-                        req.logIn(returnUser, (err) => {
-                            if (err) {
-                                console.log("Cant create user!!!");
-                                console.log(err);
-                            }
+                data.users.createUser(user, (createError, createdUser) => {
+                    if (createError) {
+                        req.session.error = `Failed to create new user, please try again! Error: ${createError}`;
+                        res.redirect("/");
+                        return;
+                    }
+
+                    req.logIn(createdUser, (loginError) => {
+                        if (loginError) {
+                            res.status(400);
+                            return res.send({ reason: loginError.toString() });
+                        } else {
+                            req.session.info = `${createdUser.username} registered and logged in successfully.`;
                             res.redirect("/");
-                        });
+                        }
                     });
+                });
             }
         },
         login(req, res, next) {
@@ -52,6 +63,14 @@ module.exports = (data) => {
         logout(req, res) {
             req.logout();
             res.redirect("/");
+        },
+        isAuthenticated(req, res, next) {
+            if (!req.isAuthenticated()) {
+                req.session.error = "You should be logged in to view this page!";
+                res.redirect("/");
+            } else {
+                return next();
+            }
         }
     };
 };
