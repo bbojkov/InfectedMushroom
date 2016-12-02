@@ -106,32 +106,25 @@ userSchema.statics.seedAdminUser = function () {
             return;
         }
         if (!data.length) {
-    let adminSalt = hashing.generateSalt();
-    let adminHashedPass = hashing.generateHashedPassword(adminSalt, "Admin123");
-    this.create(
-        {
-            username: "Admin",
-            email: "admin@shroomportal.com",
-            password: "Admin123",
-            firstName: "Admin",
-            lastName: "Petrov",
-            role: "admin",
-            salt: adminSalt,
-            hashedPass: adminHashedPass
+            let adminSalt = hashing.generateSalt();
+            let adminHashedPass = hashing.generateHashedPassword(adminSalt, "Admin123");
+            this.create(
+                {
+                    username: "Admin",
+                    email: "admin@shroomportal.com",
+                    password: "Admin123",
+                    firstName: "Admin",
+                    lastName: "Petrov",
+                    role: "admin",
+                    salt: adminSalt,
+                    hashedPass: adminHashedPass
                 }, (error) => {
                 if (error) {
-<<<<<<< .mine
-                console.log("Cant create admin!!");
-            }
-        });
-=======
                     console.log("Cant create admin!!");
                 }
             });
->>>>>>> .theirs
         }
     });
-
 };
 
 userSchema.method({
