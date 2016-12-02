@@ -1,7 +1,7 @@
 module.exports = function (data) {
     return {
         load: (req, res) => {
-            let currentPage = +req.query.page || 1;
+            let currentPage = Number(req.query.page) || 1;
             let pagesCount;
             data.news.getTotalNewsCount()
                 .then(newsCount => {
@@ -15,35 +15,34 @@ module.exports = function (data) {
                     return data.news.loadNewsPage(7, currentPage);
                 })
                 .then(news => {
-                 
+
                     let path = req.path;
                     let result = {
                         articles: news,
                         type: path,
                         pagesCount: pagesCount
-                    }
+                    };
                     res.render("../views/news", result);
                 })
                 .catch(() => {
                     res.redirect("/err");
-                });;
-
+                });
 
         },
         edit: (req, res) => {
-            let id = req.params.id
-            let mainPath = req.path.substring(req.path.indexOf('/', 1), (req.path.indexOf('/', req.path.indexOf('/', 1) + 1)));
+            let id = req.params.id;
+            let mainPath = req.path.substring(req.path.indexOf("/", 1), req.path.indexOf("/", req.path.indexOf("/", 1) + 1));
             data.news.findNewsById(id)
                 .then(newsToEdit => {
                     let result = {
                         article: newsToEdit,
                         type: mainPath
-                    }
+                    };
                     res.render("../views/edit-form", result);
                 })
                 .catch(() => {
                     res.redirect("/err");
-                });;
+                });
         },
         create: (req, res) => {
             let news = req.body;
@@ -72,17 +71,17 @@ module.exports = function (data) {
                 })
                 .catch(() => {
                     res.redirect("/err");
-                });;
+                });
         },
         getNewsById: (req, res) => {
             let id = req.params.id;
-            let mainPath = req.path.substring(0, req.path.indexOf('/', 1));
+            let mainPath = req.path.substring(0, req.path.indexOf("/", 1));
             data.news.findNewsById(id)
                 .then(loadedNews => {
                     let result = {
                         article: loadedNews,
                         type: mainPath
-                    }
+                    };
                     res.render("../views/single-article", result);
                 })
                 .catch(() => {

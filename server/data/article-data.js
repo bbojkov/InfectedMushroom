@@ -1,4 +1,6 @@
 "use strict";
+const MIN_PATTERN_LENGTH = 2;
+
 function findFirstThree(model) {
     return new Promise((resolve, reject) => {
         model
@@ -86,6 +88,32 @@ function getTotalCount(model) {
     });
 }
 
+function search(model, { pattern, count, page }) {
+    let query = {};
+    if (typeof pattern === "string" && pattern.length >= MIN_PATTERN_LENGTH) {
+        query.$or = [{ title: new RegExp(`.*${pattern}.*`, "gi") },
+                    { body: new RegExp(`.*${pattern}.*`, "gi") },
+                    { category: new RegExp(`.*${pattern}.*`, "gi") }];
+    }
+
+    let skip = (page - 1) * count,
+        limit = page * count;
+
+    return new Promise((resolve, reject) => {
+        model.find()
+                    .where(query)
+                    .skip(skip)
+                    .limit(limit)
+                    .exec((err, articles) => {
+                        if (err) {
+                            return reject(err);
+                        }
+
+                        return resolve(articles || []);
+                    });
+    });
+}
+
 module.exports = function (models) {
     let { newsModel, guideModel, reviewModel } = models;
 
@@ -111,6 +139,9 @@ module.exports = function (models) {
             },
             getTotalNewsCount() {
                 return getTotalCount(newsModel);
+            },
+            searchNews(options) {
+                return search(newsModel, options);
             }
         },
         guides: {
@@ -128,6 +159,9 @@ module.exports = function (models) {
             },
             deleteReview(id) {
                 return deleteArticle(guideModel, id);
+            },
+            searchGuides(options) {
+                return search(guideModel, options);
             }
         },
         reviews: {

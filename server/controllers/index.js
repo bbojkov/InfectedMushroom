@@ -8,6 +8,7 @@ module.exports = (data) => {
     let guidesController = require("./guides-controller");
     let usersController = require("./users-controller")(data);
     let userProfileController = require("./user-profile-controller");
+    let searchController = require("./search-controller.js")(data);
 
 
     return {
@@ -16,6 +17,7 @@ module.exports = (data) => {
         reviews: reviewsController,
         guides: guidesController,
         users: usersController,
-        usersProfile: userProfileController
+        usersProfile: userProfileController,
+        search: searchController
     };
 };
