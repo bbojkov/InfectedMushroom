@@ -6,20 +6,20 @@ const DEFAULT_PAGE = 1,
 module.exports = function(data) {
     return {
         search: (req, res) => {
-            let pattern = req.query.val || "";
+            let pattern = req.body.val || "";
             let page = Number(req.body.page || DEFAULT_PAGE);
 
             return Promise.all([data.news.searchNews({ pattern, count: PAGE_SIZE, page }),
                 data.guides.searchGuides({ pattern, count: PAGE_SIZE, page }),
                 data.reviews.searchReviews({ pattern, count: PAGE_SIZE, page })])
-                .then(([news, guides]) => {
+                .then(([news, guides, reviews]) => {
                     return res.render("../views/search.pug", {
                         model: {
                             news,
-                            guides
+                            guides,
+                            reviews
                         },
-                        params: { pattern },
-                        user: req.user
+                        params: { pattern }
                     });
                 });
 

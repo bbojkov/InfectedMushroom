@@ -10,4 +10,6 @@ block main-content
                 +article-generator(article, type)
             each article in model.guides
                 +article-generator(article, type)
+            each article in model.reviews
+                +article-generator(article, type)
             +paging-generator(pagesCount)
