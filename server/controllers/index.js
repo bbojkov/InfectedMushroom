@@ -1,9 +1,9 @@
 "use strict";
 
-module.exports = (data) => {
+module.exports = (data, validator) => {
 
     let portalController = require("./portal-controller")(data);
-    let newsController = require("./news-controller")(data);
+    let newsController = require("./news-controller")(data, validator);
     let reviewsController = require("./reviews-controller");
     let guidesController = require("./guides-controller");
     let usersController = require("./users-controller")(data);
