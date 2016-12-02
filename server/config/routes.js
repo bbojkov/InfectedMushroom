@@ -24,6 +24,10 @@ module.exports = (app, controllers) => {
         controllers[articleType].update(req, res);
     });
     app.get("/category/:id", controllers.categories.show);
+    app.get("/add/category/:type", controllers.categories.showForm);
+    app.post("/add/category/:type", controllers.categories.create);
+
+
 
     // - User routs
     app.post("/register", controllers.users.register);

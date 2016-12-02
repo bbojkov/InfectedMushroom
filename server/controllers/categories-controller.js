@@ -1,16 +1,27 @@
-module.exports = function (data, validator) {
+module.exports = function(data, validator) {
     return {
         showForm: (req, res) => {
-            let articleType = req.params.article;
-            if (articleType !== "categories") {
+            let type = req.params.type;
+            if (!["news", "review", "guide"].includes(type)) {
                 res.redirect("/err");
             }
-            let result = { articleType };
-            res.render("../views/category-form.pug", result);
+            let result = { type };
+            res.render("../views/category-form", result);
         },
         create: (req, res) => {
             // Validation
-            data.categories.createCategory(req.body.name, "news")
+            let type = req.params.type;
+            if (!validator.validateCategory(req.body.name)) {
+                let options = {
+                    type,
+                    formInput: req.body
+                };
+                options.errorMessage = "Category must be 3-300 characters long and must contain latin symbols , standard symbols and digits";
+                res.render("../views/category-form", options);
+                return;
+            }
+
+            data.categories.createCategory(req.body.name, type)
                 .then(createdCategory => {
                     res.redirect("/category/" + createdCategory._id);
                 });

@@ -35,5 +35,8 @@ module.exports = {
             }
         }
         return true;
+    },
+    validateCategory: (name) => {
+        return validateLength(name, 3, 30);
     }
 };
