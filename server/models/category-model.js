@@ -8,7 +8,7 @@ let categorySchema = mongoose.Schema({
         required: true,
         trim: true,
         unique: true,
-        minlength: 2,
+        minlength: 3,
         mexlength: 30,
         match: /[A-Za-z0-9]/
     },
