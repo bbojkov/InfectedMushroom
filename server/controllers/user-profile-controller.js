@@ -10,7 +10,7 @@ module.exports = (data) => {
                     console.log(loadedUsername);
                     let options = {
                         loadedUsername
-                    }; 
+                    };
                     res.render("../views/user-profile.pug", options);
                 });
 
