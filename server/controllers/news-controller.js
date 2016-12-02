@@ -91,9 +91,6 @@ module.exports = function (data, validator) {
                 }
             };
 
-            console.log(newsToCreate);
-
-
             data.news.createNews(newsToCreate)
                 .then(() => {
                     res.redirect("/news");

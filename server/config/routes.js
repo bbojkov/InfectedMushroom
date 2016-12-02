@@ -7,22 +7,23 @@ module.exports = (app, controllers) => {
     app.get("/news/:id", controllers.news.getNewsById);
     app.get("/news", controllers.news.load);
 
-    app.get("/edit/:article/:id", function (req, res) {
-        var articleType = req.params.article;
+    app.get("/edit/:article/:id", (req, res) => {
+        let articleType = req.params.article;
         controllers[articleType].edit(req, res);
     });
-    app.get("/create/:article", function (req, res) {
-        var articleType = req.params.article;
+    app.get("/create/:article", (req, res) => {
+        let articleType = req.params.article;
         controllers[articleType].showForm(req, res);
     });
-    app.post("/create/:article", function (req, res) {
+    app.post("/create/:article", (req, res) => {
         let articleType = req.params.article;
         controllers[articleType].create(req, res);
     });
-    app.post("/update/:article/:id", function (req, res) {
+    app.post("/update/:article/:id", (req, res) => {
         let articleType = req.params.article;
         controllers[articleType].update(req, res);
     });
+    app.get("/category/:id", controllers.categories.show);
 
     // - User routs
     app.post("/register", controllers.users.register);

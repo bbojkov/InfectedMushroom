@@ -1,0 +1,33 @@
+extends _layout.pug
+block styles
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css")
+
+block main-content
+    if localError
+        .row
+            .col-md-12
+                if (errorMessage)
+                    .alert.alert-danger.text-center #{errorMessage}
+                    //- if (infoMessage)
+                    //-     .alert.alert-success.text-center #{infoMessage}
+    else
+        .row
+            .col-md-12
+                .page-header
+                    h1
+                        | Add new category 
+                .panel.panel-default
+                    .panel-body
+                        - var url = '/create/' + articleType;
+                        form#create-article-form.form-horizontal(action=url, method='post', autocomplete='off')
+                            //- Text input
+                            .form-group
+                                label.col-sm-4.control-label(for='name')
+                                .col-sm-11
+                                    if formInput
+                                        input#category-name.form-control.input-lg(name='name', value=formInput.name, required, type='text', tabindex='-1')
+                                    else
+                                        input#category-name.form-control.input-lg(name='name', placeholder='Enter category name here', required, type='text', tabindex='-1')
+                            .form-group
+                                button.btn.btn-success(type='submit') Publish
+                                   
