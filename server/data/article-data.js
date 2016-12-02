@@ -157,7 +157,7 @@ module.exports = function (models) {
             updateGuide(id) {
                 return updateArticle(guideModel, id);
             },
-            deleteReview(id) {
+            deleteGuide(id) {
                 return deleteArticle(guideModel, id);
             },
             searchGuides(options) {
@@ -179,6 +179,9 @@ module.exports = function (models) {
             },
             deleteReview(id) {
                 return deleteArticle(reviewModel, id);
+            },
+            searchReviews(options) {
+                return search(reviewModel, options);
             }
         }
     };
