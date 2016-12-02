@@ -96,24 +96,32 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.statics.seedAdminUser = function () {
-    // TODO: check if admin already created!
-    let adminSalt = hashing.generateSalt();
-    let adminHashedPass = hashing.generateHashedPassword(adminSalt, "Admin123");
-    this.create(
-        {
-            username: "Admin",
-            email: "admin@shroomportal.com",
-            password: "Admin123",
-            firstName: "Admin",
-            lastName: "Petrov",
-            role: "admin",
-            salt: adminSalt,
-            hashedPass: adminHashedPass
-        }, (err) => {
+
+    this.find({ role: "admin" }, (err, data) => {
         if (err) {
-            console.log("Cant create admin!!");
+            return;
+        }
+        if (!data.length) {
+            let adminSalt = hashing.generateSalt();
+            let adminHashedPass = hashing.generateHashedPassword(adminSalt, "Admin123");
+            this.create(
+                {
+                    username: "Admin",
+                    email: "admin@shroomportal.com",
+                    password: "Admin123",
+                    firstName: "Admin",
+                    lastName: "Petrov",
+                    role: "admin",
+                    salt: adminSalt,
+                    hashedPass: adminHashedPass
+                }, (error) => {
+                if (error) {
+                    console.log("Cant create admin!!");
+                }
+            });
         }
     });
+
 };
 
 userSchema.method({
