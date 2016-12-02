@@ -100,7 +100,12 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.statics.seedAdminUser = function () {
-    // TODO: check if admin already created!
+
+    this.find({ role: "admin" }, (err, data) => {
+        if (err) {
+            return;
+        }
+        if (!data.length) {
     let adminSalt = hashing.generateSalt();
     let adminHashedPass = hashing.generateHashedPassword(adminSalt, "Admin123");
     this.create(
@@ -113,11 +118,20 @@ userSchema.statics.seedAdminUser = function () {
             role: "admin",
             salt: adminSalt,
             hashedPass: adminHashedPass
-        }, (err) => {
-            if (err) {
+                }, (error) => {
+                if (error) {
+<<<<<<< .mine
                 console.log("Cant create admin!!");
             }
         });
+=======
+                    console.log("Cant create admin!!");
+                }
+            });
+>>>>>>> .theirs
+        }
+    });
+
 };
 
 userSchema.method({
