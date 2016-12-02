@@ -9,19 +9,19 @@ module.exports = (app, controllers) => {
 
     app.get("/edit/:article/:id", function (req, res) {
         var articleType = req.params.article;
-        controllers[articleType].edit(req, res)
+        controllers[articleType].edit(req, res);
     });
     app.get("/create/:article", function (req, res) {
         var articleType = req.params.article;
-        controllers[articleType].showForm(req, res)
+        controllers[articleType].showForm(req, res);
     });
     app.post("/create/:article", function (req, res) {
         let articleType = req.params.article;
-        controllers[articleType].create(req, res)
+        controllers[articleType].create(req, res);
     });
     app.post("/update/:article/:id", function (req, res) {
         let articleType = req.params.article;
-        controllers[articleType].update(req, res)
+        controllers[articleType].update(req, res);
     });
 
     // - User routs

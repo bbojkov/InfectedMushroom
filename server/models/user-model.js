@@ -95,7 +95,7 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.statics.seedAdminUser = function () {
-    //TODO: check if admin already created!
+    // TODO: check if admin already created!
     this.create(
         {
             username: "Admin",
