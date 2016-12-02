@@ -8,6 +8,8 @@ module.exports = (data, validator) => {
     let guidesController = require("./guides-controller");
     let usersController = require("./users-controller")(data);
     let userProfileController = require("./user-profile-controller")(data);
+    let categoriesController = require("./categories-controller")(data, validator);
+
 
 
     return {
@@ -16,6 +18,7 @@ module.exports = (data, validator) => {
         reviews: reviewsController,
         guides: guidesController,
         users: usersController,
-        usersProfile: userProfileController
+        usersProfile: userProfileController,
+        categories: categoriesController
     };
 };
