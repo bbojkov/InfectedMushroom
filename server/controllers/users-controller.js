@@ -39,10 +39,9 @@ module.exports = (data) => {
                 }
 
                 if (!user) {
-                    return res({
-                        success: false,
-                        message: "Invalid name or password"
-                    });
+                    req.session.error = "Wrong username or password! Please try again!";
+                    res.redirect("/");
+                    return;
                 }
 
                 let userCredentials = req.body;
