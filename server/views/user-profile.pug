@@ -23,10 +23,9 @@ block main-content
                                     span User Status: #{loadedUsername.role}
                             br
             .col-xs-12.col-sm-6.col-md-6
-                .well.well-sm
                     div
-                        i.glyphicon.glyphicon-list-alt 
-                            a(href= loadedUsername.username + "/posts", title="title") Posts
+                        a.btn.btn-info(href= loadedUsername.username + "/posts", title="title") All posts by #{loadedUsername.username}
+                    br
             .col-xs-12.col-sm-6.col-md-6
                 .well.well-sm
                     div

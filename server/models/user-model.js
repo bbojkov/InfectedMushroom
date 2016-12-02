@@ -87,11 +87,6 @@ let userSchema = mongoose.Schema({
             message: "Invalid user role!"
         }
     },
-    articles: {
-        type: String,
-        minlength: 5,
-        default: "No Articles by the moment"
-    },
     meta: {
         subscriptions: [],
         comments: [],

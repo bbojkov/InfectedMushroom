@@ -27,6 +27,20 @@ function findArticleById(model, id) {
             });
     });
 }
+function findArticleByAuthor(model, author) {
+    return new Promise((resolve, reject) => {
+        model
+            .find({
+                "author.username": { "$regex": author, "$options": "i" }
+            })
+            .exec((err, article) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(article);
+            });
+    });
+}
 function createArticle(model, options) {
     return new Promise((resolve, reject) => {
         model.create(options, (err, article) => { //model.create(document(s), cb);
@@ -124,6 +138,9 @@ module.exports = function (models) {
             },
             findNewsById(id) {
                 return findArticleById(newsModel, id);
+            },
+            findNewsByAuthor(author) {
+                return findArticleByAuthor(newsModel, author);
             },
             createNews(options) {
                 return createArticle(newsModel, options);

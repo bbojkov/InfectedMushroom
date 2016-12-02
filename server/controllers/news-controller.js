@@ -128,6 +128,21 @@ module.exports = function (data, validator) {
                 });
 
         },
+        getNewsByAuthor: (req, res) => {
+            let author = req.params.currentUser;
+            console.log(author);
+            data.news.findNewsByAuthor(author)
+                .then(loadedNews => {
+                    let result = {
+                        loadedNews
+                    };
+
+                    res.render("../views/user-profile-news-posts.pug", result);
+                })
+                .catch(() => {
+                    res.redirect("/err");
+                });
+        },
         showForm: (req, res) => {
             let articleType = req.params.article;
             if (articleType !== "news") {

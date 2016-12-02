@@ -38,6 +38,8 @@ module.exports = (app, controllers) => {
     app.get("/settings/:currentUser", controllers.usersProfile.settings);
     app.get("/profile/:currentUser", controllers.usersProfile.profile);
 
+    app.get("/profile/:currentUser/posts", controllers.news.getNewsByAuthor);
+
 
     app.get("/err", (req, res) => { res.render("../views/components/page-not-found") })
 
