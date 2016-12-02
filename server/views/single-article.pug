@@ -15,7 +15,7 @@ block main-content
                     span.glyphicon.glyphicon-time
                     | #{article.createdAt.getHours()} : #{article.createdAt.getMinutes()}
                 li
-                    a(href="user/"+article.author._id)
+                    a(href="../profile/"+article.author.username)
                         span.glyphicon.glyphicon-user
                         | #{article.author.username}
                 li

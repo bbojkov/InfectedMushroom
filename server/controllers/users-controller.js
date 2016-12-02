@@ -15,7 +15,7 @@ module.exports = (data) => {
             } else {
                 data.users.createUser(user, (createError, createdUser) => {
                     if (createError) {
-                        req.session.error = `Failed to create new user, please try again! Error: ${createError}`;
+                        req.session.error = `Username: "${user.username}" already exists! Please try different name.`; // "Failed to create new user, please try again!";
                         res.redirect("/");
                         return;
                     }
@@ -39,7 +39,7 @@ module.exports = (data) => {
                 }
 
                 if (!user) {
-                    res({
+                    return res({
                         success: false,
                         message: "Invalid name or password"
                     });
