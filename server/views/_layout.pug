@@ -24,11 +24,11 @@ html(lang="en")
             if false
                 include components/events.pug
 
-        .container
-            if (errorMessage)
-               .alert.alert-danger.text-center #{errorMessage}
-            //- if (infoMessage)
-            //-     .alert.alert-success.text-center #{infoMessage}
+            .row
+                if (errorMessage)
+                    .alert.alert-danger.text-center #{errorMessage}
+                    //- if (infoMessage)
+                    //-     .alert.alert-success.text-center #{infoMessage}
 
             block main-content
 

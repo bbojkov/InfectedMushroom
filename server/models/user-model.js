@@ -47,10 +47,10 @@ let userSchema = mongoose.Schema({
         validate: {
             validator: function (val) {
                 let containsForbiddenChars = forbiddenCharacters.some(
-                (item) => {
-                    return val.includes(item);
-                }
-                    );
+                    (item) => {
+                        return val.includes(item);
+                    }
+                );
                 return !containsForbiddenChars;
             },
             message: "First name should not contain invalid characters!"
@@ -65,10 +65,10 @@ let userSchema = mongoose.Schema({
         validate: {
             validator: function (val) {
                 let containsForbiddenChars = forbiddenCharacters.some(
-                (item) => {
-                    return val.includes(item);
-                }
-                    );
+                    (item) => {
+                        return val.includes(item);
+                    }
+                );
                 return !containsForbiddenChars;
             },
             message: "Last name should not contain invalid characters!"
@@ -88,6 +88,7 @@ let userSchema = mongoose.Schema({
         }
     },
     meta: {
+        articles: [],
         subscriptions: [],
         comments: [],
         friends: []
@@ -95,7 +96,7 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.statics.seedAdminUser = function () {
-    //TODO: check if admin already created!
+    // TODO: check if admin already created!
     this.create(
         {
             username: "Admin",
@@ -105,10 +106,10 @@ userSchema.statics.seedAdminUser = function () {
             lastName: "Petrov",
             role: "admin"
         }, (err) => {
-        if (err) {
-            console.log("Cant create admin!!");
-        }
-    });
+            if (err) {
+                console.log("Cant create admin!!");
+            }
+        });
 };
 
 userSchema.method({

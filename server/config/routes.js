@@ -13,18 +13,23 @@ module.exports = (app, controllers) => {
         var articleType = req.params.article;
         controllers[articleType].edit(req, res)
     });
-    app.get("/create/:article", function (req, res) {
-        var articleType = req.params.article;
-        controllers[articleType].showForm(req, res)
-    });
-    app.post("/create/:article", function (req, res) {
+    app.get("/create/:article", (req, res) => {
         let articleType = req.params.article;
-        controllers[articleType].create(req, res)
+        controllers[articleType].showForm(req, res);
     });
-    app.post("/update/:article/:id", function (req, res) {
+    app.post("/create/:article", (req, res) => {
         let articleType = req.params.article;
-        controllers[articleType].update(req, res)
+        controllers[articleType].create(req, res);
     });
+    app.post("/update/:article/:id", (req, res) => {
+        let articleType = req.params.article;
+        controllers[articleType].update(req, res);
+    });
+    app.get("/category/:id", controllers.categories.show);
+    app.get("/add/category/:type", controllers.categories.showForm);
+    app.post("/add/category/:type", controllers.categories.create);
+
+
 
     // - User routs
     app.post("/register", controllers.users.register);

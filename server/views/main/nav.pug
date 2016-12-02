@@ -26,13 +26,10 @@ nav.navbar.navbar-inverse.navbar-static-top
                             input.search-submit(type="submit" value="Search")
             ul.nav.navbar-nav.navbar-right
                 if currentUser
-                    p.navbar-text
-                        | Signed in as 
-                        span= currentUser.username
                     li.dropdown
                         a.dropdown-toggle(href="#", data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false")
                             span.glyphicon.glyphicon-user
-                            |  Settings 
+                            | #{currentUser.username} 
                             b.caret
                         ul.dropdown-menu
                             li

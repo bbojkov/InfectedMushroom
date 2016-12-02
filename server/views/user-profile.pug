@@ -1,32 +1,41 @@
 extends _layout.pug
 
 block main-content
-    if(currentUser)
-        .container
-            .row
-                .col-xs-12.col-sm-6.col-md-6
-                    .well.well-sm
-                        .row
-                            .col-sm-6.col-md-4
-                                img.img-rounded.img-responsive(src="http://yeslk.com/images/OIP-M56b703cb09f76bbca66f8c9daae538e7H0.jpg", alt="avatar-logo")
-                            .col-sm-6.col-md-8
-                                h4 Username: #{currentUser.username}
-                                div
-                                    i.glyphicon.glyphicon-envelope 
-                                        span #{currentUser.email}
-                                br
-                                div
-                                    i.glyphicon.glyphicon-user 
-                                        span Full Name: #{currentUser.firstName} #{currentUser.lastName}
-                                br
-                                div
-                                    i.glyphicon.glyphicon-education 
-                                        span User Status: #{currentUser.role}
-                                br
-                                div
-                                    i.glyphicon.glyphicon-list-alt 
-                                        span Subscriptions:
-                                br
-                                div
-                                    i.glyphicon.glyphicon-comment 
-                                        span Comments: 
+    .container
+        .row
+            .col-xs-12.col-sm-6.col-md-6
+                .well.well-sm
+                    .row
+                        .col-sm-6.col-md-4
+                            img.img-rounded.img-responsive(src="http://yeslk.com/images/OIP-M56b703cb09f76bbca66f8c9daae538e7H0.jpg", alt="avatar-logo")
+                        .col-sm-6.col-md-8
+                            h4 Username: #{loadedUsername.username}
+                            div
+                                i.glyphicon.glyphicon-envelope 
+                                    span #{loadedUsername.email}
+                            br
+                            div
+                                i.glyphicon.glyphicon-user 
+                                    span Full Name: #{loadedUsername.firstName} #{loadedUsername.lastName}
+                            br
+                            div
+                                i.glyphicon.glyphicon-education 
+                                    span User Status: #{loadedUsername.role}
+                            br
+            .col-xs-12.col-sm-6.col-md-6
+                .well.well-sm
+                    div
+                        i.glyphicon.glyphicon-list-alt 
+                            span Posts: 
+            .col-xs-12.col-sm-6.col-md-6
+                .well.well-sm
+                    div
+                        i.glyphicon.glyphicon-comment 
+                            span Comments: 
+            .col-xs-12.col-sm-6.col-md-6
+                .well.well-sm
+                    div
+                        i.glyphicon.glyphicon-list-alt 
+                            span Subscriptions:
+
+

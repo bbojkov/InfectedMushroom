@@ -1,4 +1,4 @@
-module.exports = function (data) {
+module.exports = function (data, validator) {
     return {
         load: (req, res) => {
             let currentPage = Number(req.query.page) || 1;
@@ -15,7 +15,6 @@ module.exports = function (data) {
                     return data.news.loadNewsPage(7, currentPage);
                 })
                 .then(news => {
-
                     let path = req.path;
                     let result = {
                         articles: news,
@@ -31,7 +30,7 @@ module.exports = function (data) {
         },
         edit: (req, res) => {
             let id = req.params.id;
-            let mainPath = req.path.substring(req.path.indexOf("/", 1), req.path.indexOf("/", req.path.indexOf("/", 1) + 1));
+            let mainPath = req.path.substring(req.path.indexOf("/", 1), (req.path.indexOf("/", req.path.indexOf("/", 1) + 1)));
             data.news.findNewsById(id)
                 .then(newsToEdit => {
                     let result = {
@@ -45,15 +44,53 @@ module.exports = function (data) {
                 });
         },
         create: (req, res) => {
-            let news = req.body;
-            let author = {
-                username: req.user.username,
-                _id: req.user._id
+            // Validation part
+            let articleType = req.params.article;
+            let options = {
+                articleType,
+                formInput: req.body
             };
-            news.author = author;
-            news.tags = news.tags.split(",").map(tag => tag.trim());
 
-            data.news.createNews(news)
+            if (!validator.validateTitle(req.body.title)) {
+                options.errorMessage = "Title must be 5-60 characters long and must contain latin symbols , standard symbols and digits";
+                res.render("../views/create-form", options);
+                return;
+            }
+
+            if (!validator.validateBody(req.body.body)) {
+                options.errorMessage = "Body must be 5-600 characters long and must contain latin symbols , standard symbols and digits";
+                res.render("../views/create-form", options);
+                return;
+            }
+
+            if (req.body.imgLink.length > 0 && !validator.validateImageLink(req.body.imgLink)) {
+                options.errorMessage = "Not a valid link is provided";
+                res.render("../views/create-form", options);
+                return;
+            }
+
+            let tags = req.body.tags.split(",").map(tag => tag.trim());
+            if (!validator.validateTags(tags)) {
+                options.errorMessage = "Not a valid tag";
+                res.render("../views/create-form", options);
+                return;
+            }
+
+            let newsToCreate = {
+                title: req.body.title,
+                category: req.body.category,
+                body: req.body.body,
+                author: {
+                    username: req.user.username,
+                    _id: req.user._id
+                },
+                imgLink: req.body.imgLink,
+                meta: {
+                    tags: tags
+                }
+            };
+
+            data.news.createNews(newsToCreate)
                 .then(() => {
                     res.redirect("/news");
 
@@ -61,6 +98,8 @@ module.exports = function (data) {
                 .catch(() => {
                     res.redirect("/err");
                 });
+            // Create tags
+            // Add news to category
         },
         update: (req, res) => {
             let id = req.params.id;
@@ -94,7 +133,8 @@ module.exports = function (data) {
             if (articleType !== "news") {
                 res.redirect("/err");
             }
-            res.render("../views/create-form", { result: articleType });
+            let result = { articleType };
+            res.render("../views/create-form", result);
         }
     };
 };

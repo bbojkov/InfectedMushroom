@@ -14,7 +14,8 @@ let newsSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 5
+        minlength: 5,
+        mexlength: 600
     },
     category: {
         type: String,
