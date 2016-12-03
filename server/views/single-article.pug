@@ -23,14 +23,14 @@ block main-content
                     | Category: 
                     a(href="/category/"+article.category._id)= article.category.name
             p
-                img.img-responsive.pull-left(src=article.imgLink, alt='')
+                img.img-responsive.pull-left(src=article.imgLink)
                 | #{article.body}
             ul.article-tags.list-unstyled.list-inline
                 each tag in article.meta.tags
                     li
-                        a(href='#')
+                        a(href="/tag/"+tag.name)
                             span.glyphicon.glyphicon-tag
-                            | #{tag}
+                            | #{tag.name}
             ul.article-tags.list-unstyled.list-inline
                 li
                     span.glyphicon.glyphicon-commen

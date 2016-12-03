@@ -15,7 +15,7 @@ let newsSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 5,
-        mexlength: 600
+        mexlength: 5000
     },
     category: {
         _id: mongoose.Schema.Types.ObjectId,
@@ -49,7 +49,10 @@ let newsSchema = mongoose.Schema({
     meta: {
         likes: Number,
         dislikes: Number,
-        tags: [String]
+        tags: [{
+            _id: mongoose.Schema.Types.ObjectId,
+            name: String
+        }]
     },
     comments: [{}]
 });

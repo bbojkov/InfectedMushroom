@@ -76,53 +76,73 @@ module.exports = function (data, validator) {
                             options.errorMessage = "Minimum two tags required, letters and digits only!";
                             reject(options);
                         }
-                        resolve();
+                        resolve(tags);
                     });
 
                 })
                 .catch(options => {
                     res.render("../views/create-form", options);
                 })
-                .then(() => {
-                    return data.categories.getCategoryById(req.body.category, "_id name");
+                .then((tags) => {
+                    let promises = [];
+                    promises.push(data.categories.getCategoryById(req.body.category, "_id name"));
+                    tags.forEach(tagName => {
+                        promises.push(data.tags.getOrCreateTagByName(tagName));
+                    });
+                    return Promise.all(promises);
                 })
-                .then(category => {
+                .then(resolvedCategoryAndTags => {
+                    let category = resolvedCategoryAndTags.splice(0, 1)[0];
+                    let tags = resolvedCategoryAndTags.map(tag => {
+                        return {
+                            _id: tag._id,
+                            name: tag.name
+                        };
+                    });
+
 
                     let newsToCreate = {
                         title: req.body.title,
+                        body: req.body.body,
                         category: {
                             _id: category._id,
                             name: category.name
                         },
-                        body: req.body.body,
                         author: {
                             username: req.user.username,
                             _id: req.user._id
                         },
                         imgLink: req.body.imgLink,
                         meta: {
-                            tags: req.body.tags.split(/[,\s]+/g).map(tag => tag.trim())
+                            tags: tags
                         }
                     };
-                    //Resolve newsToCreate
-                    //get tags
+
                     return data.news.createNews(newsToCreate);
 
                 })
                 .then(createdNews => {
-                    //Add article and tags to the category
-                    return data.categories.addArticleToCategory(
+                    let promises = [];
+                    // Add article and tags to the category
+                    promises.push(data.categories.addArticleToCategory(
                         createdNews.category._id,
                         createdNews._id,
                         createdNews.title,
-                        createdNews.meta.tags);
+                        createdNews.meta.tags));
 
-                    //Add article and category to the tags
+                    // Add article -and category- to the tags
+                    promises.push(data.tags.addArticleToTags(
+                        createdNews.meta.tags,
+                        createdNews._id,
+                        createdNews.title));
+
+                    return Promise.all(promises);
                 })
                 .then(() => {
                     res.redirect("/news");
                 })
-                .catch(() => {
+                .catch((err) => {
+                    console.log(err);
                     res.redirect("/err");
                 });
 

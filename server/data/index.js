@@ -41,14 +41,15 @@ module.exports = () => {
     let articleData = require("./article-data")(models);
     let postData = require("./post-data")(models);
     let userData = require("./user-data")(models);
-    let categoryData = require("./category-data")(models);
+    let articleElementsData = require("./article-elements-data")(models);
 
     let data = {
         news: articleData.news,
         guides: articleData.guides,
         reviews: articleData.reviews,
-        users: userData.users,
-        categories: categoryData.categories
+        categories: articleElementsData.categories,
+        tags: articleElementsData.tags,
+        users: userData.users
     };
 
     return data;
