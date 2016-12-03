@@ -1,4 +1,4 @@
-module.exports = function(data, validator) {
+module.exports = function (data, validator) {
     return {
         showForm: (req, res) => {
             let type = req.params.type;

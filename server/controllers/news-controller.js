@@ -45,61 +45,87 @@ module.exports = function (data, validator) {
         },
         create: (req, res) => {
             // Validation part
-            let articleType = req.params.article;
-            let options = {
-                articleType,
-                formInput: req.body
-            };
+            data.categories.getAllCategoriesByType("news")
+                .then(availableCategories => {
+                    let options = {
+                        articleType: req.params.article,
+                        availableCategories,
+                        formInput: req.body
+                    };
+                    return options;
+                })
+                .then(options => {
+                    return new Promise((resolve, reject) => {
+                        if (!validator.validateTitle(req.body.title)) {
+                            options.errorMessage = "Title must be 5-60 characters long and must contain latin symbols , standard symbols and digits";
+                            reject(options);
+                        }
 
-            if (!validator.validateTitle(req.body.title)) {
-                options.errorMessage = "Title must be 5-60 characters long and must contain latin symbols , standard symbols and digits";
-                res.render("../views/create-form", options);
-                return;
-            }
+                        if (!validator.validateBody(req.body.body)) {
+                            options.errorMessage = "Body must be 5-600 characters long and must contain latin symbols , standard symbols and digits";
+                            reject(options);
+                        }
 
-            if (!validator.validateBody(req.body.body)) {
-                options.errorMessage = "Body must be 5-600 characters long and must contain latin symbols , standard symbols and digits";
-                res.render("../views/create-form", options);
-                return;
-            }
+                        if (req.body.imgLink.length > 0 && !validator.validateImageLink(req.body.imgLink)) {
+                            options.errorMessage = "Not a valid link is provided";
+                            reject(options);
+                        }
 
-            if (req.body.imgLink.length > 0 && !validator.validateImageLink(req.body.imgLink)) {
-                options.errorMessage = "Not a valid link is provided";
-                res.render("../views/create-form", options);
-                return;
-            }
+                        let tags = req.body.tags.split(/[,\s]+/g).map(tag => tag.trim());
+                        if (!validator.validateTags(tags)) {
+                            options.errorMessage = "Minimum two tags required, letters and digits only!";
+                            reject(options);
+                        }
+                        resolve();
+                    });
 
-            let tags = req.body.tags.split(/[,\s]+/g).map(tag => tag.trim());
-            if (!validator.validateTags(tags)) {
-                options.errorMessage = "Minimum two tags required, letters and digits only!";
-                res.render("../views/create-form", options);
-                return;
-            }
+                })
+                .catch(options => {
+                    res.render("../views/create-form", options);
+                })
+                .then(() => {
+                    return data.categories.getCategoryById(req.body.category, "_id name");
+                })
+                .then(category => {
 
-            let newsToCreate = {
-                title: req.body.title,
-                category: req.body.category,
-                body: req.body.body,
-                author: {
-                    username: req.user.username,
-                    _id: req.user._id
-                },
-                imgLink: req.body.imgLink,
-                meta: {
-                    tags: tags
-                }
-            };
+                    let newsToCreate = {
+                        title: req.body.title,
+                        category: {
+                            _id: category._id,
+                            name: category.name
+                        },
+                        body: req.body.body,
+                        author: {
+                            username: req.user.username,
+                            _id: req.user._id
+                        },
+                        imgLink: req.body.imgLink,
+                        meta: {
+                            tags: req.body.tags.split(/[,\s]+/g).map(tag => tag.trim())
+                        }
+                    };
+                    //Resolve newsToCreate
+                    //get tags
+                    return data.news.createNews(newsToCreate);
 
-            data.news.createNews(newsToCreate)
+                })
+                .then(createdNews => {
+                    //Add article and tags to the category
+                    return data.categories.addArticleToCategory(
+                        createdNews.category._id,
+                        createdNews._id,
+                        createdNews.title,
+                        createdNews.meta.tags);
+
+                    //Add article and category to the tags
+                })
                 .then(() => {
                     res.redirect("/news");
-
                 })
                 .catch(() => {
                     res.redirect("/err");
                 });
-            // Create tags
-            // Add news to category
+
         },
         update: (req, res) => {
             let id = req.params.id;
@@ -140,12 +166,21 @@ module.exports = function (data, validator) {
                 });
         },
         showForm: (req, res) => {
-            let articleType = req.params.article;
-            if (articleType !== "news") {
-                res.redirect("/err");
-            }
-            let result = { articleType };
-            res.render("../views/create-form", result);
+            data.categories.getAllCategoriesByType("news")
+                .then(availableCategories => {
+                    let articleType = req.params.article;
+                    if (articleType !== "news") {
+                        res.redirect("/err");
+                    }
+                    let result = {
+                        articleType,
+                        availableCategories
+                    };
+                    res.render("../views/create-form", result);
+                })
+                .catch(() => {
+                    res.redirect("/err");
+                });
         }
     };
 };

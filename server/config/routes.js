@@ -9,9 +9,9 @@ module.exports = (app, controllers) => {
 
     app.get("/search", controllers.search.search);
 
-    app.get("/edit/:article/:id", function (req, res) {
-        var articleType = req.params.article;
-        controllers[articleType].edit(req, res)
+    app.get("/edit/:article/:id", (req, res) => {
+        let articleType = req.params.article;
+        controllers[articleType].edit(req, res);
     });
     app.get("/create/:article", (req, res) => {
         let articleType = req.params.article;
@@ -41,7 +41,9 @@ module.exports = (app, controllers) => {
     app.get("/profile/:currentUser/posts", controllers.news.getNewsByAuthor);
 
 
-    app.get("/err", (req, res) => { res.render("../views/components/page-not-found") })
+    app.get("/err", (req, res) => {
+        res.render("../views/components/page-not-found");
+    });
 
     app.all("*", (req, res) => {
         res.status(404);

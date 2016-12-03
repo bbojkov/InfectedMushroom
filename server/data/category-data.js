@@ -36,10 +36,10 @@ module.exports = function (models) {
                         });
                 });
             },
-            getCategoryById(id) {
+            getCategoryById(id, projection) {
                 return new Promise((resolve, reject) => {
                     categoryModel
-                        .findById(id, (err, category) => {
+                        .findById(id, projection, (err, category) => {
                             if (err) {
                                 return reject(err);
                             }
@@ -47,10 +47,10 @@ module.exports = function (models) {
                         });
                 });
             },
-            getAllCategoryName() {
+            getAllCategoriesByType(type) {
                 return new Promise((resolve, reject) => {
                     categoryModel
-                        .find({}, "name", (err, categoriesNames) => {
+                        .find({ type }, "_id name", (err, categoriesNames) => {
                             if (err) {
                                 return reject(err);
                             }

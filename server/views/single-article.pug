@@ -20,7 +20,8 @@ block main-content
                         | #{article.author.username}
                 li
                     span.glyphicon.glyphicon-commen
-                    | 124 Comments
+                    | Category: 
+                    a(href="/category/"+article.category._id)= article.category.name
             p
                 img.img-responsive.pull-left(src=article.imgLink, alt='')
                 | #{article.body}
@@ -30,6 +31,16 @@ block main-content
                         a(href='#')
                             span.glyphicon.glyphicon-tag
                             | #{tag}
+            ul.article-tags.list-unstyled.list-inline
+                li
+                    span.glyphicon.glyphicon-commen
+                    | 0 Likes |
+                li
+                    span.glyphicon.glyphicon-commen
+                    |  0 Dislikes |
+                li
+                    span.glyphicon.glyphicon-commen
+                    |  0 Comments
         #control-buttons.col-sm-1
             button.btn.btn-info.btn-circle.btn-xl(type='button')
                 span.glyphicon.glyphicon-thumbs-up

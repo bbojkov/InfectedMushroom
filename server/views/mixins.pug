@@ -2,7 +2,7 @@ mixin list-articles(news, type)
     .col-sm-4
         .news
             .img-figure
-                .cat #{news.category}
+                .cat #{news.category.name}
                 img.img-responsive(src=news.imgLink)
             .title
                 h1 #{news.title}

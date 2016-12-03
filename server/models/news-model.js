@@ -18,10 +18,13 @@ let newsSchema = mongoose.Schema({
         mexlength: 600
     },
     category: {
-        type: String,
-        required: true,
-        minlength: 2,
-        maxlength: 20
+        _id: mongoose.Schema.Types.ObjectId,
+        name: {
+            type: String,
+            required: true,
+            minlength: 2,
+            maxlength: 20
+        }
     },
     author: {
         _id: mongoose.Schema.Types.ObjectId,
