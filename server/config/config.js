@@ -13,6 +13,6 @@ module.exports = {
     production: {
         rootPath: getRootPath,
         db: process.env.MONGO_DB_CONN_STRING, //"mongodb://commodore:pass1@ds159377.mlab.com:59377/infected_mushroom",
-        port: process.env.port
+        port: process.env.PORT
     }
 };
