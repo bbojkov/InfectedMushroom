@@ -1,0 +1,80 @@
+	body {
+		background: #eee;
+	}
+	
+	p {
+		font-size: 14px;
+		color: #777;
+	}
+	
+	.article-big-form .image {
+		height: 200px;
+		overflow: hidden;
+		border-radius: 3px 0 0 3px;
+	}
+	
+	.article-big-form .image img {
+		width: 100%;
+		height: auto;
+	}
+	
+	.article-big-form .date {
+		top: -10px;
+		z-index: 99;
+		width: 65px;
+		right: -10px;
+		height: 65px;
+		padding: 10px;
+		position: absolute;
+		color: #FFFFFF;
+		font-weight: bold;
+		background: #5bc0de;
+		border-radius: 999px;
+	}
+	
+	.article-big-form .article-details {
+		padding: 0 20px 0 0;
+    	word-wrap: break-word;
+	}
+	
+	.article-big-form {
+		padding: 0;
+	}
+	
+	.well {
+		border: 0;
+		padding: 20px;
+		min-height: 63px;
+		background: #fff;
+		box-shadow: none;
+		border-radius: 3px;
+		position: relative;
+		max-height: 100000px;
+		border-bottom: 2px solid #ccc;
+	}
+	
+	.article-big-form .article-details h2 {
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #eee;
+	}
+	
+	.article-big-form .date .article-number {
+		color: #fff;
+		display: block;
+		font-size: 24px;
+		text-align: center;
+	}
+	
+	#article-create-btn {
+		margin-bottom: 10px;
+	}
+	
+	.btn-circle.btn-xl {
+		width: 70px;
+		height: 70px;
+		padding: 10px 16px;
+		font-size: 24px;
+		line-height: 1.33;
+		border-radius: 35px;
+	}

@@ -1,0 +1,20 @@
+.row.content-item
+    .col-sm-10.article
+            h2 Comments for #{article.title}
+            each comment in article.comments
+                ul.article-detail.list-unstyled.list-inline
+                    li
+                        span.glyphicon.glyphicon-calendar
+                        | #{comment.createdAt.getDate()}/#{comment.createdAt.getMonth()}/#{comment.createdAt.getFullYear()}
+                    li
+                        span.glyphicon.glyphicon-time
+                        | #{comment.createdAt.getHours()} : #{comment.createdAt.getMinutes()}
+                    li
+                        a(href="../profile/"+comment.author)
+                            span.glyphicon.glyphicon-user
+                            | #{comment.author}
+                    li
+                        span.glyphicon.glyphicon-comment
+                        | #{comment.responses.length} Comments
+                p
+                    | #{comment.commentBody}

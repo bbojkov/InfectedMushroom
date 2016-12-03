@@ -1,0 +1,44 @@
+extends _layout.pug
+
+block styles
+    link(rel="stylesheet" href="/static/css/article.css")
+
+block main-content
+    #article-item.row.content-item
+        .col-sm-10.article
+            h2 #{article.title}
+            ul.article-detail.list-unstyled.list-inline
+                li
+                    span.glyphicon.glyphicon-calendar
+                    | #{article.createdAt.getDate()}/#{article.createdAt.getMonth()}/#{article.createdAt.getFullYear()}
+                li
+                    span.glyphicon.glyphicon-time
+                    | #{article.createdAt.getHours()} : #{article.createdAt.getMinutes()}
+                li
+                    a(href="../profile/"+article.author.username)
+                        span.glyphicon.glyphicon-user
+                        | #{article.author.username}
+                li
+                    span.glyphicon.glyphicon-commen
+                    | #{article.comments.length} Comments
+            p
+                img.img-responsive.pull-left(src=article.imgLink, alt='')
+                | #{article.body}
+            ul.article-tags.list-unstyled.list-inline
+                each tag in article.meta.tags
+                    li
+                        a(href='#')
+                            span.glyphicon.glyphicon-tag
+                            | #{tag}
+        #control-buttons.col-sm-1
+            button.btn.btn-info.btn-circle.btn-xl(type='button')
+                span.glyphicon.glyphicon-thumbs-up
+            button.btn.btn-warning.btn-circle.btn-xl(type='button')
+                span.glyphicon.glyphicon-thumbs-down
+            button.btn.btn-danger.btn-circle.btn-xl(type='button')
+                i.glyphicon.glyphicon-heart
+            a(href="/edit"+type+"/"+article._id)
+                button.btn.btn-green.btn-circle.btn-xl(type='button')
+                    span.glyphicon.glyphicon-edit
+    include components/comment-box
+    include components/comments-list

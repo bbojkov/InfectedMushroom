@@ -1,0 +1,38 @@
+{
+  "name": "infected-mushroom-team",
+  "version": "1.0.0",
+  "description": "_Web applications with Node.js_",
+  "engines": {
+    "node": "7.1.0"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "./node_modules/.bin/nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bbojkov/InfectedMushroom/"
+  },
+  "author": "Team Infected Mushroom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bbojkov/InfectedMushroom/issues"
+  },
+  "homepage": "https://github.com/bbojkov/InfectedMushroom#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "crypto": "0.0.3",
+    "express": "4.14.0",
+    "express-session": "^1.14.2",
+    "mongodb": "^2.2.11",
+    "mongoose": "4.6.8",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pug": "2.0.0-beta6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
