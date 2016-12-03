@@ -7,9 +7,9 @@ block main-content
     .row
         .col-md-10
             each article in model.news
-                +article-generator(article, type)
+                +article-generator(article, "./news")
             each article in model.guides
-                +article-generator(article, type)
+                +article-generator(article, "./guides")
             each article in model.reviews
-                +article-generator(article, type)
+                +article-generator(article, "./reviews")
             +paging-generator(pagesCount)

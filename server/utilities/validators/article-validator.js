@@ -22,7 +22,7 @@ module.exports = {
         return validateLength(body, 5, 600);
     },
     validateImageLink: (imgLink) => {
-        return validateSymbols(imgLink, "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)");
+        return validateSymbols(imgLink, "([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))");
     },
     validateTags: (tags) => {
         if (tags.length < 2) {
