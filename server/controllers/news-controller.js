@@ -69,9 +69,9 @@ module.exports = function (data, validator) {
                 return;
             }
 
-            let tags = req.body.tags.split(",").map(tag => tag.trim());
+            let tags = req.body.tags.split(/[,\s]+/g).map(tag => tag.trim());
             if (!validator.validateTags(tags)) {
-                options.errorMessage = "Not a valid tag";
+                options.errorMessage = "Minimum two tags required, letters and digits only!";
                 res.render("../views/create-form", options);
                 return;
             }
@@ -130,13 +130,9 @@ module.exports = function (data, validator) {
         },
         getNewsByAuthor: (req, res) => {
             let author = req.params.currentUser;
-            console.log(author);
             data.news.findNewsByAuthor(author)
                 .then(loadedNews => {
-                    let result = {
-                        loadedNews
-                    };
-
+                    let result = { loadedNews };
                     res.render("../views/user-profile-news-posts.pug", result);
                 })
                 .catch(() => {
