@@ -15,6 +15,7 @@ body {
     font-size: 25px;
     line-height: 45px;
     text-transform: uppercase;
+    word-wrap: break-word;
 }
 
 .content-item h3 {
