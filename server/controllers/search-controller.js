@@ -6,7 +6,7 @@ const DEFAULT_PAGE = 1,
 module.exports = function(data) {
     return {
         search: (req, res) => {
-            let pattern = req.body.val || "";
+            let pattern = req.query.val || "";
             let page = Number(req.body.page || DEFAULT_PAGE);
 
             return Promise.all([data.news.searchNews({ pattern, count: PAGE_SIZE, page }),
