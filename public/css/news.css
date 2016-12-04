@@ -39,6 +39,7 @@
 	
 	.article-big-form .article-details {
 		padding: 0 20px 0 0;
+    	word-wrap: break-word;
 	}
 	
 	.article-big-form {

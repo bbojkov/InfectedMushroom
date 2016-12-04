@@ -8,3 +8,8 @@ block main-content
         .col-md-10
             h1
             | This is category : #{foundCategory.name}
+            if foundCategory.relatedArticles.length > 0
+                ul.list-unstyled
+                    each article in foundCategory.relatedArticles
+                        li
+                            a(href="/" + foundCategory.type + "/" + article._id)= article.title

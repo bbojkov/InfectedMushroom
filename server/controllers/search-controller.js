@@ -9,9 +9,9 @@ module.exports = function(data) {
             let pattern = req.query.val || "";
             let page = Number(req.body.page || DEFAULT_PAGE);
 
-            return Promise.all([data.news.searchNews({ pattern, count: PAGE_SIZE, page }),
-                data.guides.searchGuides({ pattern, count: PAGE_SIZE, page }),
-                data.reviews.searchReviews({ pattern, count: PAGE_SIZE, page })])
+            return Promise.all([data.news.search({ pattern, count: PAGE_SIZE, page }),
+                data.guides.search({ pattern, count: PAGE_SIZE, page }),
+                data.reviews.search({ pattern, count: PAGE_SIZE, page })])
                 .then(([news, guides, reviews]) => {
                     return res.render("../views/search.pug", {
                         model: {

@@ -15,13 +15,16 @@ let newsSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 5,
-        mexlength: 600
+        mexlength: 5000
     },
     category: {
-        type: String,
-        required: true,
-        minlength: 2,
-        maxlength: 20
+        _id: mongoose.Schema.Types.ObjectId,
+        name: {
+            type: String,
+            required: true,
+            minlength: 2,
+            maxlength: 20
+        }
     },
     author: {
         _id: mongoose.Schema.Types.ObjectId,
@@ -46,7 +49,10 @@ let newsSchema = mongoose.Schema({
     meta: {
         likes: Number,
         dislikes: Number,
-        tags: [String]
+        tags: [{
+            _id: mongoose.Schema.Types.ObjectId,
+            name: String
+        }]
     },
     comments: [{}]
 });
@@ -58,4 +64,3 @@ let newsModel = mongoose.model("News");
 
 module.exports = newsModel;
 
-// http://mongoosejs.com/docs/plugins.html

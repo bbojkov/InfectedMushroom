@@ -19,7 +19,7 @@ module.exports = {
         return validateLength(title, 5, 60);
     },
     validateBody: (body) => {
-        return validateLength(body, 5, 600);
+        return validateLength(body, 5, 5000);
     },
     validateImageLink: (imgLink) => {
         return validateSymbols(imgLink, "([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))");

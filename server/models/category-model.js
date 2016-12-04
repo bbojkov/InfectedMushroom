@@ -7,7 +7,6 @@ let categorySchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true,
         minlength: 3,
         mexlength: 30,
         match: /[A-Za-z0-9]/
@@ -17,13 +16,13 @@ let categorySchema = mongoose.Schema({
         required: true,
         enum: ["news", "review", "guide"]
     },
-    articles: [{
+    relatedArticles: [{
         _id: mongoose.Schema.Types.ObjectId,
         title: String
     }],
-    tags: [{
+    relatedTags: [{
         _id: mongoose.Schema.Types.ObjectId,
-        tag: String
+        name: String
     }]
 
 });
