@@ -171,14 +171,17 @@ module.exports = function (data, validator) {
     function updateArticle(req, res, articleType) {
         let id = req.params.id;
         let body = req.body;
-        // Edit the category in body !!
-        data[articleType].update(id, body)
+        data.categories.getCategoryById(req.body.category)
+        .then(extractedcategory => {
+            body.category = extractedcategory;
+            data[articleType].update(id, body)
             .then(() => {
-                res.redirect("/" + articleType + "/" + id);
+                res.redirect(`/${articleType}/${id}`);
             })
             .catch(() => {
                 res.redirect("/err");
             });
+        });
     }
 
     function getArticleById(req, res, articleType) {
