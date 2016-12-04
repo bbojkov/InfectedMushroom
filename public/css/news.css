@@ -1,21 +1,26 @@
 	body {
-		background: #eee;
+		background:transparent;
+	}
+
+	h2 {
+		font-size: 40px;
+		color: darkslategray;
 	}
 	
 	p {
-		font-size: 14px;
-		color: #777;
+		font-size: 25px;
+		color: black;
 	}
 	
 	.article-big-form .image {
-		height: 200px;
+		height: 260px;
 		overflow: hidden;
 		border-radius: 3px 0 0 3px;
 	}
 	
 	.article-big-form .image img {
-		width: 100%;
-		height: auto;
+		width: 75%;
+		height: inherit;
 	}
 	
 	.article-big-form .date {
@@ -44,18 +49,19 @@
 		border: 0;
 		padding: 20px;
 		min-height: 63px;
-		background: #fff;
-		box-shadow: none;
+		background-color: hsla(48, 100%, 100%, 0.5);
+		opacity: 0.82;
 		border-radius: 3px;
+		border: 3px solid black;
 		position: relative;
 		max-height: 100000px;
-		border-bottom: 2px solid #ccc;
+		border-bottom: 2px solid black;
 	}
 	
 	.article-big-form .article-details h2 {
 		margin-bottom: 10px;
 		padding-bottom: 10px;
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid black;
 	}
 	
 	.article-big-form .date .article-number {
@@ -66,6 +72,7 @@
 	}
 	
 	#article-create-btn {
+		color: black;
 		margin-bottom: 10px;
 	}
 	
