@@ -1,33 +1,5 @@
 module.exports = function (data, validator) {
     return {
-        load: (req, res) => {
-            let currentPage = Number(req.query.page) || 1;
-            let pagesCount;
-            data.news.getTotalCount()
-                .then(newsCount => {
-
-                    if (newsCount % 7 === 0) {
-                        pagesCount = newsCount / 7;
-                    } else {
-                        pagesCount = ((newsCount / 7) + 1) | 0;
-                    }
-
-                    return data.news.loadPage(7, currentPage);
-                })
-                .then(news => {
-                    let path = req.path;
-                    let result = {
-                        articles: news,
-                        type: path,
-                        pagesCount: pagesCount
-                    };
-                    res.render("../views/news", result);
-                })
-                .catch(() => {
-                    res.redirect("/err");
-                });
-
-        },
         edit: (req, res) => {
             let id = req.params.id;
             let mainPath = req.path.substring(req.path.indexOf("/", 1), (req.path.indexOf("/", req.path.indexOf("/", 1) + 1)));
@@ -180,23 +152,6 @@ module.exports = function (data, validator) {
                 .then(loadedNews => {
                     let result = { loadedNews };
                     res.render("../views/user-profile-news-posts.pug", result);
-                })
-                .catch(() => {
-                    res.redirect("/err");
-                });
-        },
-        showForm: (req, res) => {
-            data.categories.getAllCategoriesByType("news")
-                .then(availableCategories => {
-                    let articleType = req.params.article;
-                    if (articleType !== "news") {
-                        res.redirect("/err");
-                    }
-                    let result = {
-                        articleType,
-                        availableCategories
-                    };
-                    res.render("../views/create-form", result);
                 })
                 .catch(() => {
                     res.redirect("/err");

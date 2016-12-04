@@ -13,3 +13,6 @@ block main-content
                     each article in foundCategory.relatedArticles
                         li
                             a(href="/" + foundCategory.type + "/" + article._id)= article.title
+            div.center-block
+                a(href='/create/'+ foundCategory.type)
+                    | Create new article 

@@ -2,7 +2,7 @@ module.exports = function(data, validator) {
     return {
         showForm: (req, res) => {
             let type = req.params.type;
-            if (!["news", "review", "guide"].includes(type)) {
+            if (!["news", "reviews", "guides"].includes(type)) {
                 res.redirect("/err");
             }
             let result = { type };

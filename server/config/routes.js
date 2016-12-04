@@ -17,14 +17,8 @@ module.exports = (app, controllers) => {
         let articleType = req.params.article;
         controllers[articleType].edit(req, res);
     });
-    app.get("/create/:article", (req, res) => {
-        let articleType = req.params.article;
-        controllers[articleType].showForm(req, res);
-    });
-    app.post("/create/:article", (req, res) => {
-        let articleType = req.params.article;
-        controllers[articleType].create(req, res);
-    });
+    app.get("/create/:article", controllers.article.showForm);
+    app.post("/create/:article", controllers.article.create);
     app.post("/update/:article/:id", (req, res) => {
         let articleType = req.params.article;
         controllers[articleType].update(req, res);

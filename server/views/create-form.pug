@@ -33,7 +33,12 @@ block main-content
                             .form-group
                                 label.col-sm-4.control-label(for='category')
                                 .col-sm-11
-                                    if availableCategories
+                                    if availableCategories.length === 0
+                                        div.alert.alert-danger(role='alert')
+                                            a(href='/add/category/'+ articleType)
+                                                p.text-center
+                                                | First create a category!!
+                                    else 
                                         select#category.form-control(name='category' required)
                                             each category in availableCategories
                                                 option(value=category._id)= category.name

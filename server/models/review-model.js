@@ -8,31 +8,51 @@ let reviewSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 5,
-        maxlength: 60
+        mexlength: 60
     },
     body: {
         type: String,
         required: true,
         trim: true,
-        minlength: 5
+        minlength: 5,
+        mexlength: 5000
     },
     category: {
-        type: String,
-        required: true,
-        minlength: 2,
-        maxlength: 20
+        _id: mongoose.Schema.Types.ObjectId,
+        name: {
+            type: String,
+            required: true,
+            minlength: 2,
+            maxlength: 20
+        }
     },
     author: {
+        _id: mongoose.Schema.Types.ObjectId,
+        username: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 2,
+            maxlength: 30
+        }
+    },
+    imgLink: {
         type: String,
-        required: true,
         trim: true,
-        minlength: 2,
-        maxlength: 30
+        set: value => {
+            if (value.length === 0) {
+                return "/static/images/shroom-vibe.png";
+            }
+            return value;
+        }
     },
     meta: {
         likes: Number,
         dislikes: Number,
-        tags: [String]
+        tags: [{
+            _id: mongoose.Schema.Types.ObjectId,
+            name: String
+        }]
     },
     comments: [{}]
 });
