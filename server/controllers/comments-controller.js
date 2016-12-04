@@ -17,12 +17,13 @@ module.exports = function (data) {
                     let commentToPush = createdComment;
                     commentsArray.push(commentToPush);
                     let updateOptions = { comments: commentsArray };
-                    data.news.update(req.params.id, updateOptions);
+                    data[req.params.article].update(req.params.id, updateOptions);
                 })
                 .then(() => {
-                    res.redirect(`/news/${req.params.id}`);
+                    res.redirect(`/${req.params.article}/${req.params.id}`);
                 })
-                .catch(() => {
+                .catch((err) => {
+                    console.log(err);
                     res.redirect("/err");
                 });
         }

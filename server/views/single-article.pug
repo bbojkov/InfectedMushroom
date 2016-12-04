@@ -2,6 +2,8 @@ extends _layout.pug
 
 block styles
     link(rel="stylesheet" href="/static/css/article.css")
+block js
+    script(src="/static/js/main.js")
 
 block main-content
     #article-item.row.content-item
@@ -42,13 +44,13 @@ block main-content
                     span.glyphicon.glyphicon-commen
                     |  #{article.comments.length} Comments
         #control-buttons.col-sm-1
-            button.btn.btn-info.btn-circle.btn-xl(type='button')
+            button#like-btn.btn.btn-info.btn-circle.btn-xl(type='button')
                 span.glyphicon.glyphicon-thumbs-up
-            button.btn.btn-warning.btn-circle.btn-xl(type='button')
-                span.glyphicon.glyphicon-thumbs-down
+            button#dislike-btn.btn.btn-warning.btn-circle.btn-xl(type='button')
+                span#subscribe-btn.glyphicon.glyphicon-thumbs-down
             button.btn.btn-danger.btn-circle.btn-xl(type='button')
                 i.glyphicon.glyphicon-heart
-            a(href="/edit"+type+"/"+article._id)
+            a(href="/edit/"+type+"/"+article._id)
                 button.btn.btn-green.btn-circle.btn-xl(type='button')
                     span.glyphicon.glyphicon-edit
     include components/comment-box

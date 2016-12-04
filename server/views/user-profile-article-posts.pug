@@ -1,0 +1,18 @@
+extends _layout.pug
+include mixins.pug
+block styles
+    link(rel="stylesheet" href="/static/css/news.css")
+
+block main-content
+    p= News
+    - var news = loadedArticles[0]
+    each singleNews in news
+        +article-generator(singleNews, "../../news")
+    p= Reviews
+    - var reviews = loadedArticles[1]
+    each review in reviews
+        +article-generator(review, "../../reviews")
+    p= Guides
+    - var guides = loadedArticles[2]
+    each guide in guides
+        +article-generator(guide, "../../guides")

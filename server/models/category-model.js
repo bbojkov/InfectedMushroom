@@ -14,7 +14,7 @@ let categorySchema = mongoose.Schema({
     type: {
         type: String,
         required: true,
-        enum: ["news", "review", "guide"]
+        enum: ["news", "reviews", "guides"]
     },
     relatedArticles: [{
         _id: mongoose.Schema.Types.ObjectId,
