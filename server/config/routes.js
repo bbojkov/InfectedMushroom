@@ -12,19 +12,19 @@ module.exports = (app, controllers) => {
     app.get("/guides", controllers.article.load);
 
     // Article functionality
-    app.get("/edit/:article/:id", controllers.article.edit);
-    app.post("/update/:article/:id", controllers.article.update);
+    app.get("/edit/:article/:id", controllers.users.isAuthenticated, controllers.article.edit);
+    app.post("/update/:article/:id", controllers.users.isAuthenticated, controllers.article.update);
     app.get("/create/:article", controllers.article.showForm);
     app.post("/create/:article", controllers.article.create);
 
     // Categories
     app.get("/category/:id", controllers.categories.show);
-    app.get("/add/category/:type", controllers.categories.showForm);
-    app.post("/add/category/:type", controllers.categories.create);
+    app.get("/add/category/:type", controllers.users.isAuthenticated, controllers.categories.showForm);
+    app.post("/add/category/:type", controllers.users.isAuthenticated, controllers.categories.create);
 
     // Tools
     app.get("/search", controllers.search.search);
-    app.post("/comment/:article/:id", controllers.comments.create);
+    app.post("/comment/:article/:id", controllers.users.isAuthenticated, controllers.comments.create);
 
     // User routs
     app.post("/register", controllers.users.register);

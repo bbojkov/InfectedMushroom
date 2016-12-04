@@ -27,8 +27,8 @@ html(lang="en")
             .row
                 if (errorMessage)
                     .alert.alert-danger.text-center #{errorMessage}
-                    //- if (infoMessage)
-                    //-     .alert.alert-success.text-center #{infoMessage}
+                    if (infoMessage)
+                        .alert.alert-success.text-center #{infoMessage}
 
             block main-content
 

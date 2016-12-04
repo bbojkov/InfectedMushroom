@@ -15,7 +15,7 @@ module.exports = (data) => {
             } else {
                 data.users.createUser(user, (createError, createdUser) => {
                     if (createError) {
-                        req.session.error = `Username: "${user.username}" already exists! Please try different name.`; // "Failed to create new user, please try again!";
+                        req.session.error = `Username: "${user.username}" already exists! Please try again!`;
                         res.redirect("/");
                         return;
                     }
@@ -65,7 +65,7 @@ module.exports = (data) => {
         },
         isAuthenticated(req, res, next) {
             if (!req.isAuthenticated()) {
-                req.session.error = "You should be logged in to view this page!";
+                req.session.error = "You should be logged in to do this! Redirecting to home page. Please log in!";
                 res.redirect("/");
             } else {
                 return next();
