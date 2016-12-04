@@ -53,7 +53,6 @@ function createArticle(model, options) {
 }
 function updateArticle(model, id, options) {
     return new Promise((resolve, reject) => {
-        if(!options.commentBody) {
         model
             .findByIdAndUpdate(id, options, (err, article) => {
                 if (err) {
@@ -61,16 +60,6 @@ function updateArticle(model, id, options) {
                 }
                 return resolve(article);
             });
-        }
-        else{
-            model
-            .findByIdAndUpdate(id, { $push: { "comments": options } }, (err, article) => {
-                if (err) {
-                    return reject(err);
-                }
-                return resolve(article);
-            });
-        }
     });
 }
 function deleteArticle(model, id) {
@@ -144,71 +133,71 @@ module.exports = function (models) {
 
     return {
         news: {
-            findFirstThreeNews() {
+            findFirstThree() {
                 return findFirstThree(newsModel);
             },
-            findNewsById(id) {
+            findById(id) {
                 return findArticleById(newsModel, id);
             },
-            findNewsByAuthor(author) {
+            findByAuthor(author) {
                 return findArticleByAuthor(newsModel, author);
             },
-            createNews(options) {
+            create(options) {
                 return createArticle(newsModel, options);
             },
-            updateNews(id, options) {
+            update(id, options) {
                 return updateArticle(newsModel, id, options);
             },
-            deleteNews(id) {
+            delete(id) {
                 return deleteArticle(newsModel, id);
             },
-            loadNewsPage(count, page) {
+            loadPage(count, page) {
                 return loadLatestArticles(newsModel, count, page);
             },
-            getTotalNewsCount() {
+            getTotalCount() {
                 return getTotalCount(newsModel);
             },
-            searchNews(options) {
+            search(options) {
                 return search(newsModel, options);
             }
         },
         guides: {
-            findFirstThreeGuides() {
+            findFirstThree() {
                 return findFirstThree(guideModel);
             },
-            findGuideById(id) {
+            findById(id) {
                 return findArticleById(guideModel, id);
             },
-            createGuide(options) {
+            create(options) {
                 return createArticle(guideModel, options);
             },
-            updateGuide(id) {
+            update(id) {
                 return updateArticle(guideModel, id);
             },
-            deleteGuide(id) {
+            delete(id) {
                 return deleteArticle(guideModel, id);
             },
-            searchGuides(options) {
+            search(options) {
                 return search(guideModel, options);
             }
         },
         reviews: {
-            findFirstThreeReviews() {
+            findFirstThree() {
                 return findFirstThree(reviewModel);
             },
-            findReviewById(id) {
+            findById(id) {
                 return findArticleById(reviewModel, id);
             },
-            createReview(options) {
+            create(options) {
                 return createArticle(reviewModel, options);
             },
-            updateReview(id) {
+            update(id) {
                 return updateArticle(reviewModel, id);
             },
-            deleteReview(id) {
+            delete(id) {
                 return deleteArticle(reviewModel, id);
             },
-            searchReviews(options) {
+            search(options) {
                 return search(reviewModel, options);
             }
         }
