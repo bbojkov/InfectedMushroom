@@ -33,10 +33,10 @@ block main-content
                             .form-group
                                 label.col-sm-4.control-label(for='category')
                                 .col-sm-11
-                                    select#category.form-control(name='category' required)
-                                        option(value='Virtual reality') Virtual reality
-                                        option(value='Role-playing game') Role-playing game
-                                        option(value='Tech News') Tech News
+                                    if availableCategories
+                                        select#category.form-control(name='category' required)
+                                            each category in availableCategories
+                                                option(value=category._id)= category.name
                             .col-sm-11.col-sm-offset-1
                                 .btn-toolbar(role='toolbar')
                                     .btn-group

@@ -11,8 +11,11 @@ let tagSchema = mongoose.Schema({
         minlength: 2,
         mexlength: 30,
         match: /[A-Za-z0-9#]/
-    }
-
+    },
+    relatedArticles: [{
+        _id: mongoose.Schema.Types.ObjectId,
+        title: String
+    }]
 });
 
 mongoose.model("Tag", tagSchema);

@@ -1,13 +1,13 @@
 "use strict";
 
 module.exports = function(models) {
-    let { commentModel, responseModel, tagModel } = models;
+    let { commentModule, responseModule, tagModule } = models;
 
     return {
         post: {
             addComment(options) {
                 return new Promise((resolve, reject) => {
-                    commentModel.create(options, (err, comment) => {
+                    commentModule.create(options, (err, comment) => {
                         if (err) {
                             return reject(err);
                         }
@@ -17,7 +17,7 @@ module.exports = function(models) {
             },
             addResponse(options) {
                 return new Promise((resolve, reject) => {
-                    responseModel.create(options, (err, response) => {
+                    responseModule.create(options, (err, response) => {
                         if (err) {
                             return reject(err);
                         }
@@ -27,7 +27,7 @@ module.exports = function(models) {
             },
             addTag(options) {
                 return new Promise((resolve, reject) => {
-                    tagModel.create(options, (err, tag) => {
+                    tagModule.create(options, (err, tag) => {
                         if (err) {
                             return reject(err);
                         }
