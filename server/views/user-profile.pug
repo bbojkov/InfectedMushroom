@@ -1,9 +1,11 @@
 extends _layout.pug
+block styles
+    link(rel="stylesheet" href="/static/css/user-profile.css")
 
 block main-content
     .container
         .row
-            .col-xs-12.col-sm-6.col-md-6
+            .col-xs-12.col-sm-6.col-md-6.profile-box
                 .well.well-sm
                     .row
                         .col-sm-6.col-md-4

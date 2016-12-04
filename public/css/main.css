@@ -1,8 +1,31 @@
-/* Fro the register-login* /
-/* General sizing */
+#wrapper {
+	margin-top: -20px;
+    background: url("http://wall.wallrage.com/wp-content/uploads/Black-Texture-Wallpaper-High-Definition-728x450.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
 
 ul.dropdown-lr {
 	width: 300px;
+}
+
+h1 {
+	color: white;
+}
+
+h1 small {
+	color: white;
+}
+
+.panel-body {
+	background-color:darkgray;
+}
+
+.panel-body .form-control {
+	background-color: lightgray;
+	color: black;
 }
 
 
@@ -17,11 +40,3 @@ ul.dropdown-lr {
 	}
 }
 
-#wrapper {
-	margin-top: -20px;
-    background: url("https://68.media.tumblr.com/ae970d33aa5ff767d9c0998210e338fb/tumblr_ohnrqzVRI61r9z2nto1_540.png") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}

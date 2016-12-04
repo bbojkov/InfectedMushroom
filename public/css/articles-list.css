@@ -1,25 +1,24 @@
 	body {
-		background:transparent;
+		background: transparent;
 	}
 
 	h2 {
-		font-size: 40px;
+		font-size: 30px;
 		color: darkslategray;
 	}
 	
 	p {
-		font-size: 25px;
+		font-size: 20px;
 		color: black;
 	}
 	
 	.article-big-form .image {
-		height: 260px;
 		overflow: hidden;
 		border-radius: 3px 0 0 3px;
 	}
 	
 	.article-big-form .image img {
-		width: 75%;
+		width: 60%;
 		height: inherit;
 	}
 	

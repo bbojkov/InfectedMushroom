@@ -2,11 +2,16 @@ body {
     background: #eee;
 }
 
+h1 {
+    color: white;
+}
+
 .content-item {
     padding: 30px 0;
-    background-color: #FFFFFF;
+    background-color: lightgrey;
     padding: 50px 0;
     height: 100%;
+    opacity: 0.88;
 }
 
 .content-item h2 {
@@ -72,9 +77,15 @@ div ul.article-tags li i, div .box.tags ul li i {
   border-radius: 35px;
 }
 
-.comment-box{
+.comment-box {
+    font-weight: bold;
     margin-bottom: 20px;
     margin-top: 20px
+}
+
+.comment-box #comment-form #text {
+    color: black;
+    background-color:lightgray;
 }
 
 #text {
