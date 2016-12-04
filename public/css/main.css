@@ -16,3 +16,12 @@ ul.dropdown-lr {
 		color: #eee;
 	}
 }
+
+#wrapper {
+	margin-top: -20px;
+    background: url("https://68.media.tumblr.com/ae970d33aa5ff767d9c0998210e338fb/tumblr_ohnrqzVRI61r9z2nto1_540.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}

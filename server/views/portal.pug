@@ -9,7 +9,7 @@ block main-content
         .col-sm-10
             h2 Latest news
         .col-sm-2
-            a.btn.btn-default.pull-right(href="/news") See more
+            a.btn.btn-success.pull-right(href="/news") See more
     .row.row-extra-bottom-padding
         each news in firstThreeNews
             +list-articles(news, "news")
@@ -17,7 +17,7 @@ block main-content
         .col-sm-10
             h2 Latest reviews
         .col-sm-2
-            a.btn.btn-default.pull-right(href="/reviews") See more
+            a.btn.btn-success.pull-right(href="/reviews") See more
     .row.row-extra-bottom-padding
         each review in firstThreeReviews
             +list-articles(review, "reviews")
@@ -25,7 +25,7 @@ block main-content
         .col-sm-10
             h2 Latest guides
         .col-sm-2
-            a.btn.btn-default.pull-right(href="/guides") See more
+            a.btn.btn-success.pull-right(href="/guides") See more
     .row.row-extra-bottom-padding
         each guide in firstThreeGuides
             +list-articles(guide, "guides")
