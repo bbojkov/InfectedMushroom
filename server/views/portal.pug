@@ -19,11 +19,13 @@ block main-content
         .col-sm-2
             a.btn.btn-default.pull-right(href="/reviews") See more
     .row.row-extra-bottom-padding
-    //- reviews
+        each review in firstThreeReviews
+            +list-articles(review, "reviews")
     .row
         .col-sm-10
             h2 Latest guides
         .col-sm-2
             a.btn.btn-default.pull-right(href="/guides") See more
     .row.row-extra-bottom-padding
-    //- guides
+        each guide in firstThreeGuides
+            +list-articles(guide, "guides")

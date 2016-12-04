@@ -6,29 +6,19 @@ module.exports = function (data) {
                 .then(firstThreeNews => {
                     result.firstThreeNews = firstThreeNews;
 
-                     res.render("../views/portal.pug", result);
-                });
+                    return data.reviews.findFirstThree();
+                })
+                .then(firstThreeReviews => {
+                    result.firstThreeReviews = firstThreeReviews;
+
+                    return data.guides.findFirstThree();
+                })
+                .then(firstThreeGuides => {
+                    result.firstThreeGuides = firstThreeGuides;
+
+                    res.render("../views/portal.pug", result);
+                })
+                .catch(() => { });
         }
-
-        // index: (req, res) => {
-        //     let result = {};
-        //     data.news.findFirstThreeNews()
-        //         .then(firstThreeNews => {
-        //             result.firstThreeNews = firstThreeNews;
-
-        //             return data.reviews.findFirstThreeReviews();
-        //         })
-        //         .then(firstThreeReviews => {
-        //             result.firstThreeReviews = firstThreeReviews;
-
-        //             return data.guides.findFirstThreeGuides();
-        //         })
-        //         .then(firstThreeGuides => {
-        //             result.firstThreeGuides = findFirstThreeGuides;
-
-        //             res.render("../views/portal.pug", result);
-        //         })
-        //         .catch(() => { });
-        // }
-    }
+    };
 };
