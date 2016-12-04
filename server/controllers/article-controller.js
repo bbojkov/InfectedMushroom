@@ -1,5 +1,5 @@
 module.exports = function (data, validator) {
-    function articleShowForm(req, res, articleType) {
+    function showArticleForm(req, res, articleType) {
         data.categories.getAllCategoriesByType(articleType)
             .then(availableCategories => {
                 // if (articleType !== "news") {
@@ -148,13 +148,59 @@ module.exports = function (data, validator) {
             });
     }
 
+    function editArticle(req, res, articleType) {
+        let id = req.params.id;
 
+        let result = { type: articleType };
+        data.categories.getAllCategoriesByType(articleType)
+            .then(availableCategories => {
+                result.availableCategories = availableCategories;
+                return data[articleType].findById(id);
+            })
+            .then(articleToEdit => {
+                result.article = articleToEdit;
+            })
+            .then(() => {
+                res.render("../views/edit-form", result);
+            })
+            .catch(() => {
+                res.redirect("/err");
+            });
+    }
 
+    function updateArticle(req, res, articleType) {
+        let id = req.params.id;
+        let body = req.body;
+        // Edit the category in body !!
+        data[articleType].update(id, body)
+            .then(() => {
+                res.redirect("/" + articleType + "/" + id);
+            })
+            .catch(() => {
+                res.redirect("/err");
+            });
+    }
+
+    function getArticleById(req, res, articleType) {
+        let id = req.params.id;
+        data[articleType].findById(id)
+            .then(loadedArticle => {
+                let result = {
+                    article: loadedArticle,
+                    type: articleType
+                };
+                res.render("../views/single-article", result);
+            })
+            .catch(() => {
+                res.redirect("/err");
+            });
+
+    }
 
     return {
         showForm(req, res) {
             let articleType = req.params.article;
-            return articleShowForm(req, res, articleType);
+            return showArticleForm(req, res, articleType);
         },
         load(req, res) {
             let articleType = req.path.slice(1);
@@ -163,6 +209,19 @@ module.exports = function (data, validator) {
         create(req, res) {
             let articleType = req.params.article;
             return createArticle(req, res, articleType);
+        },
+        edit(req, res) {
+            let articleType = req.params.article;
+            // let articleType2 = req.path.substring(req.path.indexOf("/", 1), (req.path.indexOf("/", req.path.indexOf("/", 1) + 1)));
+            return editArticle(req, res, articleType);
+        },
+        update(req, res) {
+            let articleType = req.params.article;
+            return updateArticle(req, res, articleType);
+        },
+        getById(req, res) {
+            let articleType = req.path.substring(1, req.path.indexOf("/", 1));
+            return getArticleById(req, res, articleType);
         }
     };
 };

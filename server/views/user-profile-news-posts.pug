@@ -1,9 +1,0 @@
-extends _layout.pug
-include mixins.pug
-block styles
-    link(rel="stylesheet" href="/static/css/news.css")
-
-block main-content
-    - var news = loadedNews
-    each article in news
-        +article-generator(article, "../../news")

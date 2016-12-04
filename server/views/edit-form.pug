@@ -10,7 +10,7 @@ block main-content
                     | Edit article
             .panel.panel-default
                 .panel-body
-                    - var url = '/update'+type+'/'+article._id;
+                    - var url = '/update/'+type+'/'+article._id;
                     form#create-article-form.form-horizontal(action=url, method='post', autocomplete='off')
                         // Text input
                         .form-group
@@ -20,13 +20,12 @@ block main-content
                         // Select Basic
                         .form-group
                             label.col-sm-4.control-label(for='category')
-                            .col-sm-11
-                                select#category.form-control(name='category')
-                                    option(value=article.category selcted)= article.category
+                            .col-sm-11 
+                                select#category.form-control(name='category' required)
+                                    option(value=article.category._id selcted)= article.category.name
                                     option.divider(role='separator' disabled)
-                                    option(value='Virtual reality') Virtual reality
-                                    option(value='Role-playing game') Role-playing game
-                                    option(value='Tech News') Tech News
+                                        each category in availableCategories
+                                            option(value=category._id)= category.name
                         .col-sm-11.col-sm-offset-1
                             .btn-toolbar(role='toolbar')
                                 .btn-group
@@ -74,6 +73,7 @@ block main-content
                             .form-group
                                 label.col-sm-4.control-label(for='tags')
                                 .col-sm-11
-                                    input#tags.form-control.input-md(name='tags', type='text' value=article.meta.tags.join(', '))
+                                    -var tagNames = article.meta.tags.map(tag => tag.name);
+                                    input#tags.form-control.input-md(name='tags', type='text' value=tagNames.join(', '))
                             .form-group
                                 button.btn.btn-success(type='submit') Save
