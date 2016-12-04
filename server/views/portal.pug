@@ -12,22 +12,18 @@ block main-content
             a.btn.btn-default.pull-right(href="/news") See more
     .row.row-extra-bottom-padding
         each news in firstThreeNews
-            +list-articles(news, "/news")
+            +list-articles(news, "news")
     .row
         .col-sm-10
             h2 Latest reviews
         .col-sm-2
             a.btn.btn-default.pull-right(href="/reviews") See more
     .row.row-extra-bottom-padding
-        +delete-that-mixin-later
-        +delete-that-mixin-later
-        +delete-that-mixin-later
+    //- reviews
     .row
         .col-sm-10
             h2 Latest guides
         .col-sm-2
             a.btn.btn-default.pull-right(href="/guides") See more
     .row.row-extra-bottom-padding
-        +delete-this-too
-        +delete-this-too
-        +delete-this-too
+    //- guides

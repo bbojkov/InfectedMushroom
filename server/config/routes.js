@@ -2,10 +2,14 @@
 
 module.exports = (app, controllers) => {
     app.get("/", controllers.portal.index);
-    app.get("/reviews", controllers.reviews.index);
-    app.get("/guides", controllers.guides.index);
+
+
     app.get("/news/:id", controllers.news.getNewsById);
-    app.get("/news", controllers.news.load);
+
+    app.get("/news", controllers.article.load);
+    app.get("/reviews", controllers.article.load);
+    app.get("/guides", controllers.article.load);
+
 
     app.get("/search", controllers.search.search);
 

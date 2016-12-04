@@ -11,6 +11,7 @@ module.exports = (data, validator) => {
     let categoriesController = require("./categories-controller")(data, validator);
     let searchController = require("./search-controller.js")(data);
     let commentsController = require("./comments-controller.js")(data);
+    let articleController = require("./article-controller")(data, validator);
 
 
     return {
@@ -22,6 +23,7 @@ module.exports = (data, validator) => {
         categories: categoriesController,
         usersProfile: userProfileController,
         search: searchController,
-        comments: commentsController
+        comments: commentsController,
+        article: articleController
     };
 };

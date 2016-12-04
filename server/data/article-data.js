@@ -88,7 +88,6 @@ function loadLatestArticles(model, count, page) {
             });
     });
 }
-
 function getTotalCount(model) {
     return new Promise((resolve, reject) => {
         model
@@ -168,14 +167,23 @@ module.exports = function (models) {
             findById(id) {
                 return findArticleById(guideModel, id);
             },
+            findByAuthor(author) {
+                return findArticleByAuthor(guideModel, author);
+            },
             create(options) {
                 return createArticle(guideModel, options);
             },
-            update(id) {
-                return updateArticle(guideModel, id);
+            update(id, options) {
+                return updateArticle(guideModel, id, options);
             },
             delete(id) {
                 return deleteArticle(guideModel, id);
+            },
+            loadPage(count, page) {
+                return loadLatestArticles(guideModel, count, page);
+            },
+            getTotalCount() {
+                return getTotalCount(guideModel);
             },
             search(options) {
                 return search(guideModel, options);
@@ -188,14 +196,23 @@ module.exports = function (models) {
             findById(id) {
                 return findArticleById(reviewModel, id);
             },
+            findByAuthor(author) {
+                return findArticleByAuthor(reviewModel, author);
+            },
             create(options) {
                 return createArticle(reviewModel, options);
             },
-            update(id) {
-                return updateArticle(reviewModel, id);
+            update(id, options) {
+                return updateArticle(reviewModel, id, options);
             },
             delete(id) {
                 return deleteArticle(reviewModel, id);
+            },
+            loadPage(count, page) {
+                return loadLatestArticles(reviewModel, count, page);
+            },
+            getTotalCount() {
+                return getTotalCount(reviewModel);
             },
             search(options) {
                 return search(reviewModel, options);

@@ -1,44 +1,16 @@
-mixin list-articles(news, type)
+mixin list-articles(article, type)
     .col-sm-4
         .news
             .img-figure
-                .cat #{news.category.name}
-                img.img-responsive(src=news.imgLink)
+                .cat #{article.category.name}
+                img.img-responsive(src=article.imgLink)
             .title
-                h1 #{news.title}
-            - var shortBody =  news.body.substring(0.20);
+                h1 #{article.title}
+            - var shortBody =  article.body.substring(0,100);
             p.description
-                | #{shortBody}
+                | #{shortBody}...
             p.more
-                a(href=type +"/"+ news._id) read more
-                i.fa.fa-angle-right(aria-hidden='true')
-
-mixin delete-that-mixin-later(params)
-    .col-sm-4
-        .news
-            .img-figure
-                .cat fashion
-                img.img-responsive(src='http://images.nintendolife.com/games/wiiu-eshop/never_alone/cover_medium.jpg')
-            .title
-                h1 The start of the web and web design
-            p.description
-                | If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden...
-            p.more
-                a(href='#') read more
-                i.fa.fa-angle-right(aria-hidden='true')
-
-mixin delete-this-too(params)
-    .col-sm-4
-        .news
-            .img-figure
-                .cat fashion
-                img.img-responsive(src='https://s-media-cache-ak0.pinimg.com/originals/f8/78/f2/f878f26dca3c89741ad3f2ae9c91b9c1.jpg')
-            .title
-                h1 The start of the web and web design
-            p.description
-                | If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden...
-            p.more
-                a(href='#') read more
+                a(href="/"+type +"/"+ article._id) read more
                 i.fa.fa-angle-right(aria-hidden='true')
 
 
@@ -61,7 +33,7 @@ mixin article-generator(article, type)
                                 p= subText
 
 
-mixin paging-generator(pagesCount)
+mixin paging-generator(pagesCount, type)
     .row
         #pagination-box.center-block
             nav(aria-label='Page navigation')
@@ -70,12 +42,12 @@ mixin paging-generator(pagesCount)
                         a(aria-label='Previous')
                             span(aria-hidden='true') «
                     li.active
-                        a(href='/news?page=1') 1
+                        a(href='/'+type+'?page=1') 1
                     if pagesCount > 1
                     - var n = 2;
                     while n <= pagesCount
                         li
-                            a(href='/news?page='+ n)= n++
+                            a(href='/'+type+'?page='+ n)= n++
                     li
                         a(aria-label='Next')
                             span(aria-hidden='true') »

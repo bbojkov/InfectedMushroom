@@ -22,7 +22,8 @@ module.exports = function (data) {
                 .then(() => {
                     res.redirect(`/news/${req.params.id}`);
                 })
-                .catch(() => {
+                .catch((err) => {
+                    console.log(err);
                     res.redirect("/err");
                 });
         }

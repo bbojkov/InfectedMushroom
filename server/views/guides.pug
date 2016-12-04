@@ -1,4 +1,26 @@
 extends _layout.pug
+include mixins.pug
+block styles
+    link(rel="stylesheet" href="/static/css/articles-list.css")
 
 block main-content
-    h5 Some text from the "GUIDES" file that extends the layout
+    .row
+        .col-md-10
+            each guide in articles
+                +article-generator(guide, type)
+            +paging-generator(pagesCount, type)
+        .col-md-2
+            if (currentUser)
+                a#article-create-btn.btn.btn-success.btn-large.btn-block(href='/create/'+ type) Publish guide
+                a#article-create-btn.btn.btn-success.btn-large.btn-block(href='/add/category/'+ type) Create guide category
+            p
+                img.img-responsive(src="http://vignette1.wikia.nocookie.net/halo/images/c/cb/Halo_Combat_Evolved_Logo.png/revision/latest?cb=20130902135517")
+                img.img-responsive(src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2a/Assassin's_Creed_Logo.svg/1280px-Assassin's_Creed_Logo.svg.png")
+                img.img-responsive(src="http://achievementgen.com/hearthstone/files/layout/logo.png")
+                img.img-responsive(src="http://dotageeks.com/wp-content/uploads/2015/10/Starcraft-Logo-04.png")
+                img.img-responsive(src="http://steamunpowered.eu/wp-content/uploads/2015/04/Heroes-of-The-Storm-LOGO.png")
+                img.img-responsive(src="https://sickr.files.wordpress.com/2012/03/world_of_warcraft_logo_large.png")
+                img.img-responsive(src="http://www.nonfictiongaming.com/wp-content/uploads/2012/05/diablo3releasedate.png")
+                img.img-responsive(src="http://img03.deviantart.net/6059/i/2016/155/4/0/overwatch_logo_by_feeerieke-da4xuzp.png")
+                img.img-responsive(src="http://hydra-media.cursecdn.com/witcher.gamepedia.com/3/38/TW3_English_logo.png")
+                img.img-responsive(src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Deus_Ex_series_logo.png")
