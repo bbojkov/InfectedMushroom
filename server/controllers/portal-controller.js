@@ -2,7 +2,7 @@ module.exports = function (data) {
     return {
         index: (req, res) => {
             let result = {};
-            data.news.findFirstThreeNews()
+            data.news.findFirstThree()
                 .then(firstThreeNews => {
                     result.firstThreeNews = firstThreeNews;
 

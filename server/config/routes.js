@@ -40,6 +40,8 @@ module.exports = (app, controllers) => {
 
     app.get("/profile/:currentUser/posts", controllers.news.getNewsByAuthor);
 
+    app.post("/comment/:article/:id", controllers.comments.create);
+
 
     app.get("/err", (req, res) => {
         res.render("../views/components/page-not-found");

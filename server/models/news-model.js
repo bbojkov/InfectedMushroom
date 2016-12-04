@@ -64,4 +64,3 @@ let newsModel = mongoose.model("News");
 
 module.exports = newsModel;
 
-// http://mongoosejs.com/docs/plugins.html

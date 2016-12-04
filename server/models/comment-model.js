@@ -10,7 +10,7 @@ let commentSchema = mongoose.Schema({
         maxlength: 30,
         match: /[A-Za-z0-9_]/
     },
-    body: {
+    commentBody: {
         type: String,
         required: true,
         minlength: 5

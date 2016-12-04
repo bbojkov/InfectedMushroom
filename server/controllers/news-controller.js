@@ -3,7 +3,7 @@ module.exports = function (data, validator) {
         load: (req, res) => {
             let currentPage = Number(req.query.page) || 1;
             let pagesCount;
-            data.news.getTotalNewsCount()
+            data.news.getTotalCount()
                 .then(newsCount => {
 
                     if (newsCount % 7 === 0) {
@@ -12,7 +12,7 @@ module.exports = function (data, validator) {
                         pagesCount = ((newsCount / 7) + 1) | 0;
                     }
 
-                    return data.news.loadNewsPage(7, currentPage);
+                    return data.news.loadPage(7, currentPage);
                 })
                 .then(news => {
                     let path = req.path;
@@ -31,7 +31,7 @@ module.exports = function (data, validator) {
         edit: (req, res) => {
             let id = req.params.id;
             let mainPath = req.path.substring(req.path.indexOf("/", 1), (req.path.indexOf("/", req.path.indexOf("/", 1) + 1)));
-            data.news.findNewsById(id)
+            data.news.findById(id)
                 .then(newsToEdit => {
                     let result = {
                         article: newsToEdit,
@@ -118,7 +118,7 @@ module.exports = function (data, validator) {
                         }
                     };
 
-                    return data.news.createNews(newsToCreate);
+                    return data.news.create(newsToCreate);
 
                 })
                 .then(createdNews => {
@@ -150,7 +150,7 @@ module.exports = function (data, validator) {
         update: (req, res) => {
             let id = req.params.id;
             let body = req.body;
-            data.news.updateNews(id, body)
+            data.news.update(id, body)
                 .then(() => {
                     res.redirect("/news/" + id);
                 })
@@ -161,7 +161,7 @@ module.exports = function (data, validator) {
         getNewsById: (req, res) => {
             let id = req.params.id;
             let mainPath = req.path.substring(0, req.path.indexOf("/", 1));
-            data.news.findNewsById(id)
+            data.news.findById(id)
                 .then(loadedNews => {
                     let result = {
                         article: loadedNews,
@@ -176,7 +176,7 @@ module.exports = function (data, validator) {
         },
         getNewsByAuthor: (req, res) => {
             let author = req.params.currentUser;
-            data.news.findNewsByAuthor(author)
+            data.news.findByAuthor(author)
                 .then(loadedNews => {
                     let result = { loadedNews };
                     res.render("../views/user-profile-news-posts.pug", result);

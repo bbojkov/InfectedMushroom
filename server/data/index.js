@@ -47,6 +47,7 @@ module.exports = () => {
         news: articleData.news,
         guides: articleData.guides,
         reviews: articleData.reviews,
+        post: postData.post,
         categories: articleElementsData.categories,
         tags: articleElementsData.tags,
         users: userData.users
