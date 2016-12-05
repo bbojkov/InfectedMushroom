@@ -25,6 +25,7 @@ module.exports = (app, controllers) => {
     // Tools
     app.get("/search", controllers.search.search);
     app.post("/comment/:article/:id", controllers.users.isAuthenticated, controllers.comments.create);
+    app.post("/response/:article/:id/:comment", controllers.users.isAuthenticated, controllers.responses.create);
 
     // User routs
     app.post("/register", controllers.users.register);

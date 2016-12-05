@@ -10,7 +10,7 @@ let responseSchema = mongoose.Schema({
         mexlength: 30,
         match: /[A-Za-z0-9_]/
     },
-    body: {
+    responseBody: {
         type: String,
         required: true,
         minlength: 5
@@ -19,10 +19,7 @@ let responseSchema = mongoose.Schema({
         _id: mongoose.Schema.Types.ObjectId,
         title: String
     },
-    relatedComment: {
-        _id: mongoose.Schema.Types.ObjectId,
-        title: String
-    }
+    relatedComment: { _id: mongoose.Schema.Types.ObjectId }
 
 });
 responseSchema.set("timestamps", true);

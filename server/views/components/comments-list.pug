@@ -5,16 +5,55 @@
                 ul.article-detail.list-unstyled.list-inline
                     li
                         span.glyphicon.glyphicon-calendar
-                        | #{comment.createdAt.getDate()}/#{comment.createdAt.getMonth()}/#{comment.createdAt.getFullYear()}
+                        |  #{comment.createdAt.getDate()}/#{comment.createdAt.getMonth()}/#{comment.createdAt.getFullYear()}
                     li
                         span.glyphicon.glyphicon-time
-                        | #{comment.createdAt.getHours()} : #{comment.createdAt.getMinutes()}
+                        |  #{comment.createdAt.getHours()} : #{comment.createdAt.getMinutes()}
                     li
                         a(href="../profile/"+comment.author)
                             span.glyphicon.glyphicon-user
-                            | #{comment.author}
+                            |  #{comment.author}
                     li
                         span.glyphicon.glyphicon-comment
-                        | #{comment.responses.length} Responses
+                        |  #{comment.responses.length} Responses
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown')
+                            | Respond 
+                            span.caret
+                        ul.dropdown-menu.dropdown-lr.animated.flipInX(role='menu')
+                            .col-lg-12
+                                .text-center
+                                    h3
+                                        b Respond
+                                - var url = '/response/'+type+'/'+article._id+'/'+comment._id;
+                                form#comment-form(accept-charset='UTF-8', action=url, method='POST')
+                                    textarea#text.form-control(name='response', placeholder='Type in your response', rows='3')
+                                    button.btn.btn-info(type='submit') Post New Response   
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown')
+                            | Show responses 
+                            span.caret
+                        ul.dropdown-menu.dropdown-lr.animated.flipInX(role='menu')
+                            .col-lg-12
+                                .text-center
+                                    h3
+                                        b Responses
+                                if(comment.responses)
+                                each response in comment.responses
+                                    ul.article-detail.list-unstyled.list-inline
+                                        li
+                                            span.glyphicon.glyphicon-calendar
+                                            |  #{response.createdAt.getDate()}/#{response.createdAt.getMonth()}/#{response.createdAt.getFullYear()}
+                                        li
+                                            span.glyphicon.glyphicon-time
+                                            |  #{response.createdAt.getHours()} : #{response.createdAt.getMinutes()}
+                                        li
+                                            a(href="../profile/"+response.author)
+                                                span.glyphicon.glyphicon-user
+                                                |  #{response.author}
+                                        li.resizable                        
+                                            b Response text: 
+                                            |#{response.responseBody}                                                     
                 p
-                    | #{comment.commentBody}
+                    | Comment text:  #{comment.commentBody}
+                
