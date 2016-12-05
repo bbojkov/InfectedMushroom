@@ -41,7 +41,7 @@ let reviewSchema = mongoose.Schema({
         trim: true,
         set: value => {
             if (value.length === 0) {
-                return "/static/images/shroom-vibe.png";
+                return "/static/images/bojokogybi1.png";
             }
             return value;
         }
