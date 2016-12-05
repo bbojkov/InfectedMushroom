@@ -1,12 +1,8 @@
 "use strict";
 
 const LocalStrategy = require("passport-local").Strategy;
-// const hashing = require("../../utilities/encryption");
 const User = require("mongoose").model("User");
 
-// function comparePasswords(requestPassword, user) {
-//     return hashing.generateHashedPassword(user.salt, requestPassword === user.hashedPass);
-// }
 
 module.exports = function (passport) {
     const authStrategy = new LocalStrategy(
@@ -18,9 +14,7 @@ module.exports = function (passport) {
             User
                 .findOne({ username })
                 .then(user => {
-                     //let aut =  user.authenticate(password, user);
-                     //console.log(aut);
-                     
+
                     if (user && user.authenticate(password, user)) {
                         done(null, user);
                     } else {

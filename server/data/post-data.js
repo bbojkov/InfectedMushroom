@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(models) {
+module.exports = function (models) {
     let { commentModel, responseModel, tagModel } = models;
 
     return {
@@ -33,6 +33,28 @@ module.exports = function(models) {
                         }
                         return resolve(tag);
                     });
+                });
+            },
+            findById(id) {
+                return new Promise((resolve, reject) => {
+                    commentModel
+                        .findById(id, (err, comment) => {
+                            if (err) {
+                                return reject(err);
+                            }
+                            return resolve(comment);
+                        });
+                });
+            },
+            update(id, options) {
+                return new Promise((resolve, reject) => {
+                    commentModel
+                        .findByIdAndUpdate(id, options, (err, comment) => {
+                            if (err) {
+                                return reject(err);
+                            }
+                            return resolve(comment);
+                        });
                 });
             }
         }

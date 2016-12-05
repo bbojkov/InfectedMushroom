@@ -23,16 +23,14 @@ module.exports = function(data, validator) {
 
             data.categories.createCategory(req.body.name, type)
                 .then(createdCategory => {
-                    res.redirect("/category/" + createdCategory._id);
+                    res.redirect(`/category/${createdCategory._id}`);
                 });
         },
         show: (req, res) => {
             let id = req.params.id;
             data.categories.getCategoryById(id)
                 .then(foundCategory => {
-                    let result = {
-                        foundCategory
-                    };
+                    let result = { foundCategory };
                     res.render("../views/categories.pug", result);
                 });
         }

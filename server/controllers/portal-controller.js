@@ -18,7 +18,9 @@ module.exports = function (data) {
 
                     res.render("../views/portal.pug", result);
                 })
-                .catch(() => { });
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     };
 };
