@@ -36,7 +36,7 @@ module.exports = function (data, validator) {
                     type,
                     pagesCount: pagesCount
                 };
-                let pugUrl = "../views/" + type;
+                let pugUrl = `../views/${type}`;
                 res.render(pugUrl, result);
             })
             .catch(() => {
@@ -114,9 +114,7 @@ module.exports = function (data, validator) {
                         _id: req.user._id
                     },
                     imgLink: req.body.imgLink,
-                    meta: {
-                        tags: tags
-                    }
+                    meta: { tags: tags }
                 };
 
                 return data[articleType].create(articleToCreate);
@@ -140,7 +138,7 @@ module.exports = function (data, validator) {
                 return Promise.all(promises);
             })
             .then(() => {
-                res.redirect("/" + articleType);
+                res.redirect(`/${articleType}`);
             })
             .catch((err) => {
                 console.log(err);

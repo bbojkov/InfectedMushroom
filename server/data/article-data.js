@@ -30,9 +30,7 @@ function findArticleById(model, id) {
 function findArticleByAuthor(model, author) {
     return new Promise((resolve, reject) => {
         model
-            .find({
-                "author.username": { "$regex": author, "$options": "i" }
-            })
+            .find({ "author.username": { "$regex": author, "$options": "i" } })
             .exec((err, article) => {
                 if (err) {
                     return reject(err);
@@ -43,7 +41,7 @@ function findArticleByAuthor(model, author) {
 }
 function createArticle(model, options) {
     return new Promise((resolve, reject) => {
-        model.create(options, (err, article) => { //model.create(document(s), cb);
+        model.create(options, (err, article) => {
             if (err) {
                 return reject(err);
             }
